@@ -148,4 +148,15 @@ select:focus {
 .alert{
     font-weight: bold;
 }
+.dropdown-content {
+    top: 66px!important;
+    
+}
+.dropdown-content li>a, .dropdown-content li>span {
+    font-size: 16px;
+    color: #F58635!important;
+    display: block;
+    line-height: 22px;
+    padding: 14px 16px;
+}
 

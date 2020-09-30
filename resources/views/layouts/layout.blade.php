@@ -23,9 +23,21 @@
         <li><a href="/"><i class="left material-icons">home</i>Home</a></li>
         <li><a href="badges.html"><i class="left material-icons">favorite</i>Wishlist</a></li>
         <li><a href="collapsible.html"><i class="left material-icons">shopping_cart</i>Cart<span class="circle-badge">4</span></a></li>
-        <li><a href="#registrationModal"class="modal-trigger"><i class="left material-icons">account_circle</i>Account</a></li>
+        @if(Auth::guard('customer')->guest())
+          <li><a href="{{ url('/customer/login') }}">Login</a></li>
+          <li><a href="{{ url('/customer/register') }}">Register</a></li>
+        @else
+          <li><a class="dropdown-trigger" href="#!" data-target="user_dropdown">{{ Auth::guard('customer')->user()->first_name }}<i class="material-icons right">arrow_drop_down</i></a></li>
+        @endif
       </ul>
     </div>
+    <ul id="user_dropdown" class="dropdown-content">
+      <li><a href="#!">Profile</a></li>
+      <li><a href="{{ url('/customer/logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
+      <form id="logout-form" action="{{ url('/customer/logout') }}" method="POST" style="display: none;">
+          {{ csrf_field() }}
+      </form>
+    </ul>
     <div class="nav-content"style="margin-top:2px;margin-bottom:0px;">
       <div class="row container"style="margin-bottom:0px">
         <div class="input-field col s6">
@@ -61,7 +73,7 @@
       <div class="row">
         <form action="">
           <div class="col s12 center">
-            <img src="/images/coverphoto.png" alt="" class="responsive-img" width="60%">
+            <img src="{{ asset('storage/images/coverphoto.jpg') }}" alt="" class="responsive-img" width="60%">
           </div>
           <div class="input-field col s12">
             <i class="material-icons prefix white-text">account_circle</i>
