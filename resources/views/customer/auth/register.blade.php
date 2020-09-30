@@ -116,6 +116,16 @@
                         @endif
                     </div>
                     <div class="input-field">
+                        <i class="material-icons prefix">location_on</i>
+                        <input type="text"name="address"id="address"value="{{old('address')}}">
+                        <label for="address">Address</label>        
+                        @if ($errors->has('address'))
+                            <span class="red-text">
+                                <strong>{{ $errors->first('address') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    <div class="input-field">
                         <i class="material-icons prefix">email</i>
                         <input type="email"name="email"id="email"value="{{old('email')}}">
                         <label for="email">Email</label>        

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\CustomerAuth;
+namespace App\Http\Controllers\AdminAuth;
 
-use App\Customer;
+use App\Admin;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/admin/home';
 
     /**
      * Create a new controller instance.
@@ -37,7 +37,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('customer.guest');
+        $this->middleware('admin.guest');
     }
 
     /**
@@ -49,10 +49,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'first_name' => 'required|max:255',
-            'middle_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:customers',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:admins',
             'password' => 'required|min:6|confirmed',
         ]);
     }
@@ -61,15 +59,12 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return Customer
+     * @return Admin
      */
     protected function create(array $data)
     {
-        return Customer::create([
-            'first_name' => $data['first_name'],
-            'middle_name' => $data['middle_name'],
-            'last_name' => $data['last_name'],
-            'address' => $data['address'],
+        return Admin::create([
+            'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
@@ -82,7 +77,7 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        return view('customer.auth.register');
+        return view('admin.auth.register');
     }
 
     /**
@@ -92,6 +87,6 @@ class RegisterController extends Controller
      */
     protected function guard()
     {
-        return Auth::guard('customer');
+        return Auth::guard('admin');
     }
 }

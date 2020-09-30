@@ -2,21 +2,21 @@
 
 namespace App;
 
-use App\Notifications\CustomerResetPassword;
+use App\Notifications\AdminResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Customer extends Authenticatable
+class Admin extends Authenticatable
 {
     use Notifiable;
-    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'first_name','middle_name','last_name', 'address','email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -36,6 +36,6 @@ class Customer extends Authenticatable
      */
     public function sendPasswordResetNotification($token)
     {
-        $this->notify(new CustomerResetPassword($token));
+        $this->notify(new AdminResetPassword($token));
     }
 }

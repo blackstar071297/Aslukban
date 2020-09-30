@@ -6,6 +6,7 @@ $(document).ready(function(){
     $('.modal').modal();
     $(".dropdown-trigger").dropdown();
     $('.materialboxed').materialbox();
+    $('.collapsible').collapsible();
     $('.carousel.carousel-slider').carousel({
         fullWidth: true,
         indicators: true
