@@ -24,7 +24,7 @@
         <li class="no-padding">
             <ul class="collapsible collapsible-accordion">
                 <li>
-                    <a href="#!"class="collapsible-header"><i class="material-icons">dashboard</i>Dashboard</a>
+                    <a href="/admin/dashboard"class="collapsible-header"><i class="material-icons">dashboard</i>Dashboard</a>
                 </li>
             </ul>
         </li>
@@ -34,7 +34,7 @@
                     <a class="collapsible-header"><i class="material-icons">local_offer</i>Catalogs<i class="material-icons right">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                     <ul>
-                        <li><a href="#!">Categories</a></li>
+                        <li><a href="/admin/category">Categories</a></li>
                         <li><a href="#!">Products</a></li>
                         <li><a href="#!">Manufacturers</a></li>
                     </ul>
@@ -99,8 +99,8 @@
                     <a class="collapsible-header"><i class="material-icons">person</i>Account<i class="material-icons right">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                     <ul>
-                        <li><a href="{{ url('/admin/logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons">login</i>Logout</a></li>
-                        <form id="logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">
+                        <li><a href="{{ url('/admin/logout') }}"onclick="event.preventDefault();document.getElementById('admin-logout-form').submit();"><i class="material-icons">login</i>Logout</a></li>
+                        <form id="admin-logout-form" action="{{ url('/admin/logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                     </ul>

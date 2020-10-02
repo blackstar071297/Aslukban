@@ -46,4 +46,14 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('password.email');
   Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
+
+  Route::get('/category','Admin\CategoryController@index')->middleware('auth:admin');
+  Route::get('/category/new-category','Admin\CategoryController@showNewCategory')->middleware('auth:admin');
+  Route::post('/category/new-category','Admin\CategoryController@store')->middleware('auth:admin');
+  Route::post('/category/update-category/{id}','Admin\CategoryController@update')->middleware('auth:admin');
+  Route::delete('/category/{id}','Admin\CategoryController@destroy')->middleware('auth:admin');
+  Route::get('/category/{id}','Admin\CategoryController@show')->middleware('auth:admin');
+
+  
 });
+

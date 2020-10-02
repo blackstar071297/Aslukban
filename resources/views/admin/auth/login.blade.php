@@ -69,7 +69,7 @@
             <div class="card-content">
                 <h3 class="center">Admin login</h3>
                 <form method="POST" action="{{ url('/admin/login') }}">
-                {{ csrf_field() }}
+                    {{ csrf_field() }}
                     <div class="input-field">
                         <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}">
                         <label for="email">Email Address</label>
