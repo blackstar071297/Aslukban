@@ -36,7 +36,7 @@
                     <ul>
                         <li><a href="/admin/category">Categories</a></li>
                         <li><a href="#!">Products</a></li>
-                        <li><a href="#!">Manufacturers</a></li>
+                        <li><a href="/admin/manufacturer">Manufacturers</a></li>
                     </ul>
                     </div>
                 </li>

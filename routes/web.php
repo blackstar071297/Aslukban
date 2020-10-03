@@ -54,6 +54,11 @@ Route::group(['prefix' => 'admin'], function () {
   Route::delete('/category/{id}','Admin\CategoryController@destroy')->middleware('auth:admin');
   Route::get('/category/{id}','Admin\CategoryController@show')->middleware('auth:admin');
 
-  
+  Route::get('/manufacturer','Admin\ManufacturerController@index')->middleware('auth:admin');
+  Route::get('/manufacturer/new-manufacturer','Admin\ManufacturerController@showNewManufacturer')->middleware('auth:admin');
+  Route::post('/manufacturer/new-manufacturer','Admin\ManufacturerController@store')->middleware('auth:admin');
+  Route::get('/manufacturer/{id}','Admin\ManufacturerController@show')->middleware('auth:admin');
+  Route::delete('/manufacturer/{id}','Admin\ManufacturerController@destroy')->middleware('auth:admin');
+  Route::post('/manufacturer/update-manufacturer/{id}','Admin\ManufacturerController@update')->middleware('auth:admin');
 });
 
