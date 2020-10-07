@@ -9,4 +9,9 @@ class Manufacturer extends Model
     protected $table = 'manufacturers';
     public $timestamps =false;
     protected $primaryKey = 'manufacturer_id';
+    
+    public function product()
+    {
+        return $this->hasMany('App\Product');
+    }
 }

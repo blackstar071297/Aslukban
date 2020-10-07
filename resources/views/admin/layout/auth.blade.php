@@ -35,7 +35,7 @@
                     <div class="collapsible-body">
                     <ul>
                         <li><a href="/admin/category">Categories</a></li>
-                        <li><a href="#!">Products</a></li>
+                        <li><a href="/admin/products">Products</a></li>
                         <li><a href="/admin/manufacturer">Manufacturers</a></li>
                     </ul>
                     </div>
@@ -61,8 +61,6 @@
                     <div class="collapsible-body">
                     <ul>
                         <li><a href="#!">Orders</a></li>
-                        <li><a href="#!">Products</a></li>
-                        <li><a href="#!">Manufacturers</a></li>
                     </ul>
                     </div>
                 </li>

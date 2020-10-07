@@ -126,7 +126,7 @@
                         @endif
                     </div>
                     <div class="input-field">
-                        <i class="material-icons prefix">location_on</i>
+                        <i class="material-icons prefix">phone</i>
                         <input type="text"name="phone_number"id="phone_number"value="{{old('phone_number')}}">
                         <label for="phone_number">Phone number</label>        
                         @if ($errors->has('phone_number'))

@@ -40,6 +40,7 @@ class ManufacturerController extends Controller
     }
     public function destroy($id){
         if($manufacturer = Manufacturer::findOrFail($id)){
+            $manufacturer = Manufacturer::findOrFail($id);
             Storage::disk('public')->delete('images/manufacturers/'.$manufacturer->image);
             $manufacturer->delete();
             return redirect('/admin/manufacturer');
@@ -50,27 +51,24 @@ class ManufacturerController extends Controller
         return view('admin/manufacturer/update-manufacturer',['manufacturer'=> $manufacturer]);
     }
     public function update($id,request $request){
-        $manufacturer = Manufacturer::findOrFail($id);
-
+       
         $validator = Validator::make($request->all(),[
             'manufacturer_name' => 'required',
-            'manufacturer_image' => 'required|mimes:jpeg,jpg,png',
         ]);
         if($validator->fails()){
             return redirect('/admin/manufacturer/')->withErrors($validator)->withInput();
         }else{
-            
-            if($manufacturer = Manufacturer::findOrFail($id)){
+            $manufacturer = Manufacturer::findOrFail($id);
+            if($request->hasFile('manufacturer_image')){
                 Storage::disk('public')->delete('images/manufacturers/'.$manufacturer->image);
                 $path = Storage::putFile('/images/manufacturers/', $request->file('manufacturer_image'));
                 $image_name = basename($path);
-    
-                $manufacturer->manufacturer_name = $request->get('manufacturer_name');
-                $manufacturer->manufacturer_description = $request->get('manufacturer_description');
                 $manufacturer->image = $image_name;
-                $manufacturer->save();
-                return redirect('/admin/manufacturer/');
             }
+            $manufacturer->manufacturer_name = $request->get('manufacturer_name');
+            $manufacturer->manufacturer_description = $request->get('manufacturer_description');    
+            $manufacturer->save();
+            return redirect('/admin/manufacturer/');
 
         }
     }

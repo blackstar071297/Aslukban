@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-  return view('home');
+  return view('checkout');
   
 });
 
@@ -60,5 +60,13 @@ Route::group(['prefix' => 'admin'], function () {
   Route::get('/manufacturer/{id}','Admin\ManufacturerController@show')->middleware('auth:admin');
   Route::delete('/manufacturer/{id}','Admin\ManufacturerController@destroy')->middleware('auth:admin');
   Route::post('/manufacturer/update-manufacturer/{id}','Admin\ManufacturerController@update')->middleware('auth:admin');
+
+  Route::get('/products','Admin\ProductController@index')->middleware('auth:admin');
+  Route::get('/products/new-product','Admin\ProductController@showNewProduct')->middleware('auth:admin');
+  Route::post('products/new-product','Admin\ProductController@store')->middleware('auth:admin');
+  Route::get('/products/{id}','Admin\ProductController@show')->middleware('auth:admin');
+  Route::delete('/products/{id}','Admin\ProductController@destroy')->middleware('auth:admin');
+  Route::post('/products/product-update/{id}','Admin\ProductController@update')->middleware('auth:admin');
+  Route::post('/products/delete-image/{id}','Admin\ProductController@destroyImage')->middleware('auth:admin');
 });
 
