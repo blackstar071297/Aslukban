@@ -9,16 +9,15 @@
                     <div class="row">
                         <div class="col s12 m12 l5">
                             <div class="carousel carousel-slider">
-                                <a class="carousel-item" href="#one!"><img src="images/products/product-1.jpg"></a>
-                                <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"></a>
-                                <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"></a>
-                                <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"></a>
+                                @foreach($images as $image)
+                                    <a class="carousel-item" href="#one!"><img src="/images/products/{{$image->product_image_name}}"width="100%"height="100%"></a>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col s12 m12 l7">
                             <div class="row">
                                 <div class="col s12">
-                                    <p class="flow-text product-name">Alternator - isuzu</p>
+                                    <p class="flow-text product-name">{{$product->product_name}}</p>
                                     <a href="#"class="yellow-text">
                                         <i class="material-icons">star</i>
                                         <i class="material-icons">star</i>
@@ -26,7 +25,7 @@
                                         <i class="material-icons">star</i>
                                         <i class="material-icons grey-text text-lighten-1">star</i>
                                     </a>
-                                    <p class="flow-text product-price"style="font-size:3rem">P1600</p>
+                                    <p class="flow-text product-price"style="font-size:3rem">P{{$product->product_price}}</p>
                                 </div>
                                 <div class="col s12">
                                     <p class="flow-text ">Quantity</p>
@@ -63,7 +62,7 @@
                         </div>
                         <div class="col s12">
                             <span class="grey-text">Manufacturer</span>
-                            <a href="#">GTX</a>
+                            <a href="#">{{$manufacturer[0]->manufacturer_name}}</a>
                         </div>
                         <div class="col s12">
                             <span class="grey-text">Stock</span>
@@ -73,6 +72,7 @@
                     <div class="row">
                         <div class="col s12">
                             <p class="flow-text">Product Details</p>
+                            <p>{{$product->product_description}}</p>
                         </div>
 
                     </div>

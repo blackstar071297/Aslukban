@@ -31,19 +31,25 @@
         @endif
       </ul>
     </div>
+    @if(Auth::guard('customer')->guest())
+    @else
     <ul id="user_dropdown" class="dropdown-content">
-      <li><a href="#!">Profile</a></li>
+      <li><a href="/customer/profile/{{ Auth::guard('customer')->user()->id }}">Profile</a></li>
       <li><a href="{{ url('/customer/logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
       <form id="logout-form" action="{{ url('/customer/logout') }}" method="POST" style="display: none;">
           {{ csrf_field() }}
       </form>
     </ul>
+    @endif
     <div class="nav-content"style="margin-top:2px;margin-bottom:0px;">
       <div class="row container"style="margin-bottom:0px">
+      <form action="/search/">
         <div class="input-field col s6">
-          <input type="text"class="input-search white default-input">
+          <input type="text"class="input-search white default-input"name="q">
           <a href="search.php" style="color:#4b4f56"><i class="material-icons right btn-right">search</i></a>
         </div>
+      </form>
+
         <div class="input-field col s6">
            <select class="browser-default white">
               <option value="" disabled selected></option>

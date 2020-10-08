@@ -15,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
 
-  return view('checkout');
+  return view('home');
   
-});
+})->name('home');
+Route::get('/search', 'Customer\CustomerController@search');
+Route::get('product/{id}', 'Customer\ProductController@index');
 
 Route::group(['prefix' => 'customer'], function () {
 
@@ -32,6 +34,9 @@ Route::group(['prefix' => 'customer'], function () {
   Route::post('/password/reset', 'CustomerAuth\ResetPasswordController@reset')->name('password.email');
   Route::get('/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm');
+
+  Route::get('/profile/{id}', 'Customer\CustomerController@profile')->middleware('auth:customer');
+  
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -68,5 +73,7 @@ Route::group(['prefix' => 'admin'], function () {
   Route::delete('/products/{id}','Admin\ProductController@destroy')->middleware('auth:admin');
   Route::post('/products/product-update/{id}','Admin\ProductController@update')->middleware('auth:admin');
   Route::post('/products/delete-image/{id}','Admin\ProductController@destroyImage')->middleware('auth:admin');
+
+  Route::get('/customers','Admin\CustomerController@index')->middleware('auth:admin');
 });
 

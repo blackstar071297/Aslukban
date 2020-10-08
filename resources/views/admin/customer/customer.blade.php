@@ -10,23 +10,29 @@
                         <table class="centered">
                             <thead>
                             <tr>
-                                <th>Customer first name</th>
-                                <th>Customer middle name</th>
-                                <th>Customer last name</th>
+                                <th>First name</th>
+                                <th>Middle name</th>
+                                <th>Last name</th>
+                                <th>Address</th>
+                                <th>Phone number</th>
+                                <th>Email</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
 
                             <tbody>
-                            @foreach($categories as $category)
+                            @foreach($customers as $customer)
                             <tr>
-                                <td>{{$category->category_name}}</td>
-                                <td>{{$category->category_description}}</td>
-                                <td>{{$category->category_description}}</td>
+                                <td>{{$customer->first_name}}</td>
+                                <td>{{$customer->middle_name}}</td>
+                                <td>{{$customer->last_name}}</td>
+                                <td>{{$customer->address}}</td>
+                                <td>{{$customer->phone_number}}</td>
+                                <td>{{$customer->email}}</td>
                                 <td>
-                                <a href="/admin/category/{{$category->category_id}}"class="btn btn-floating blue"><i class="material-icons ">remove_red_eye</i></a>
-                                <a href="/admin/category/{{$category->category_id}}"class="btn btn-floating red"onclick="event.preventDefault();document.getElementById('category-delete-form').submit();"><i class="material-icons ">remove</i></a>
-                                <form id="category-delete-form" action="{{ url('/admin/category/') }}/{{$category->category_id}}" method="POST" style="display: none;">
+                                <a href="/admin/customers/{{$customer->id}}"class="btn btn-floating blue"><i class="material-icons ">remove_red_eye</i></a>
+                                <a href="/admin/customers/{{$customer->id}}"class="btn btn-floating red"onclick="event.preventDefault();document.getElementById('customer-delete-form').submit();"><i class="material-icons ">remove</i></a>
+                                <form id="customer-delete-form" action="{{ url('/admin/customer/') }}/{{$customer->id}}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                     @method('DELETE')
                                 </form>

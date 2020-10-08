@@ -5,6 +5,6 @@ Route::get('/', function () {
     $users[] = Auth::guard()->user();
     $users[] = Auth::guard('customer')->user();
     //dd($users);
-    return view('home');
+    return view('checkout');
 })->name('home');
 

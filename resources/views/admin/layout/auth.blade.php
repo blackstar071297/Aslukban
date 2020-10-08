@@ -72,7 +72,7 @@
                     <a class="collapsible-header"><i class="material-icons">groups</i>Customers<i class="material-icons right">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                     <ul>
-                        <li><a href="#!">Customers</a></li>
+                        <li><a href="/admin/customers">Customers</a></li>
                     </ul>
                     </div>
                 </li>
