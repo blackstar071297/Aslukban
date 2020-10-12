@@ -160,3 +160,72 @@ select:focus {
     padding: 14px 16px;
 }
 
+/* custom css number input */
+
+.input-number-group {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-justify-content: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  
+  .input-number-group input[type=number]::-webkit-inner-spin-button,
+  .input-number-group input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none !important;
+            appearance: none !important;
+  }
+  
+  .input-number-group .input-group-button {
+    line-height: calc(80px/2 - 5px)!important;
+  }
+  
+  .input-number-group .input-number {
+    width: 25px!important;
+    padding: 0 12px!important;
+    vertical-align: top!important;
+    text-align: center!important;
+    outline: none!important;
+    display: block!important;
+    margin: 0!important;
+  }
+  
+  .input-number-group .input-number,
+  .input-number-group .input-number-decrement,
+  .input-number-group .input-number-increment {
+    border: 1px solid #cacaca!important;
+    height: 40px!important;
+    -webkit-user-select: none!important;
+       -moz-user-select: none!important;
+        -ms-user-select: none!important;
+            user-select: none!important;
+    border-radius: 0;
+  }
+  
+  .input-number-group .input-number-decrement,
+  .input-number-group .input-number-increment {
+    display: inline-block!important;
+    width: 40px!important;
+    background: #e6e6e6!important;
+    color: #0a0a0a!important;
+    text-align: center!important;
+    font-weight: bold!important;
+    cursor: pointer!important;
+    font-size: 2rem!important;
+    font-weight: 400!important;
+  }
+  
+  .input-number-group .input-number-decrement {
+    margin-right: 0.3rem!important;
+  }
+  
+  .input-number-group .input-number-increment {
+    margin-left: 0.3rem!important;
+  }
+  
+  .table-wrapper{
+    overflow: auto;
+    white-space: nowrap;
+  }
+

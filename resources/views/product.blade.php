@@ -16,31 +16,46 @@
                         </div>
                         <div class="col s12 m12 l7">
                             <div class="row">
-                                <div class="col s12">
+                                <div class="col s12 mt-1">
                                     <p class="flow-text product-name">{{$product->product_name}}</p>
-                                    <a href="#"class="yellow-text">
+                                    <!-- <a href="#"class="yellow-text">
                                         <i class="material-icons">star</i>
                                         <i class="material-icons">star</i>
                                         <i class="material-icons">star</i>
                                         <i class="material-icons">star</i>
                                         <i class="material-icons grey-text text-lighten-1">star</i>
-                                    </a>
+                                    </a> -->
                                     <p class="flow-text product-price"style="font-size:3rem">P{{$product->product_price}}</p>
                                 </div>
-                                <div class="col s12">
-                                    <p class="flow-text ">Quantity</p>
-                                    <div class="numeric-input center">
-                                        <button class="btn btn-floating numeric-input-minus grey lighten-2"><i class="material-icons">remove</i></button>
-                                        <input type="number"id="numeric-input"value="1"style="text-align:center;"min="1"max="100">
-                                        <button class="btn btn-floating numeric-input-plus grey lighten-2"><i class="material-icons">add</i></button>
+                                <form action="/customer/product/{{$product->product_id}}/add-to-cart/" method="post">
+                                    @csrf
+                                    <div class="no-display">
+                                        <input type="hidden" name="product_id"value="{{$product->product_id}}">
+                                        <input type="hidden" name="customer_id"@if(Auth::guard('customer')->guest())value=""@else value="{{ Auth::guard('customer')->user()->id }}"@endif >
                                     </div>
-                                </div>     
-                                <div class="col s12 m12 l6 mt-1">
-                                    <a href="checkout.php"class="btn w-100 btn-large blue"><i class="material-icons left">shopping_cart</i>Add to cart</a>
-                                </div>        
-                                <div class="col s12 m12 l6 mt-1">
-                                    <a href="checkout.php"class="btn w-100 btn-large blue">Buy now</a>
-                                </div>                     
+                                    <div class="col s12">
+                                        <div class="input-group input-number-group left">
+                                            <div class="input-group-button">
+                                                <span class="input-number-decrement">-</span>
+                                            </div>
+                                            <input class="input-number @error('product_quantity') is-invalid @enderror" type="number" value="1" min="0" max="1000"name="product_quantity">
+                                            <div class="input-group-button">
+                                                <span class="input-number-increment">+</span>
+                                            </div>
+                                            @error('product_quantity')
+                                                <span class="red-text">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>     
+                                    <div class="col s12 m12 l6 mt-1">
+                                        <button class="btn blue btn-large w-100">Add to cart</button>
+                                    </div>        
+                                    <div class="col s12 m12 l6 mt-1">
+                                        <a href="checkout.php"class="btn w-100 btn-large blue">Buy now</a>
+                                    </div>  
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -56,9 +71,7 @@
                         </div>
                         <div class="col s12">
                             <span class="grey-text">Category</span>
-                            <a href="#">Isuzu</a> >
-                            <a href="#">Alternator</a> >
-                            <a href="#">Alternator - Isuzu</a>
+                            <a href="#">Alternator</a>
                         </div>
                         <div class="col s12">
                             <span class="grey-text">Manufacturer</span>

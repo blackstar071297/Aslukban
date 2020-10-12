@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
-
+use Redirect;
 class RedirectIfCustomer
 {
 	/**
@@ -18,7 +18,7 @@ class RedirectIfCustomer
 	public function handle($request, Closure $next, $guard = 'customer')
 	{
 	    if (Auth::guard($guard)->check()) {
-	        return redirect('/');
+	        return redirect::back();
 	    }
 
 	    return $next($request);

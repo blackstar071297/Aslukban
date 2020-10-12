@@ -1,24 +1,28 @@
 $(document).ready(function(){
+    // custom input group
+    $('.input-number-increment').click(function() {
+      var $input = $(this).parents('.input-number-group').find('.input-number');
+      var val = parseInt($input.val(), 10);
+      
+      if($('.input-number-group > .input-number').val() < 100 ){
+        $input.val(val + 1);
+      }
+      
+    });
+    
+    $('.input-number-decrement').click(function() {
+      var $input = $(this).parents('.input-number-group').find('.input-number');
+      var val = parseInt($input.val(), 10);
+      
+      if($('.input-number-group > .input-number').val() > 1 ){
+        $input.val(val - 1);
+      }
+    })
+    
+    
     $('.primary-image-trigger').click(function(e){
       e.preventDefault();
-      // $('#primary-image').trigger('click')
-      // $('#primary-image').change(function(e){
-      //   console.log($('#primary-image')[0].files[0]['name'] );
-      //   $('#primary-image-preview').attr('src',URL.createObjectURL(e.target.files[0]));
-      // });
-      // let img = $('<img/>',{
-      //   src: '/images/AS.png',
-      //   height: '150px'
-      // });
-      // let a = $('<a></a>',{
-      //   href: '#'
-      // });
-      // let div = $('<div></div>',{
-      //   class: 'col l3'
-      // });
-      // img.appendTo(a);
-      // a.prependTo(div);
-      // div.prependTo('.image-row');
+
       $('#product_images').trigger('click');
       $('#product_images').change(function(e){
               
@@ -51,10 +55,21 @@ $(document).ready(function(){
      
       
     });
-    $()
 
-
-
+    //For cart page
+    $('#allCheckbox').click(function(){
+      if($(this).prop('checked')==true){
+        
+        $('.checkout-product').each(function(){
+          $(this).prop('checked',true)
+        });
+      }else if($(this).prop("checked") == false){
+        
+        $('.checkout-product').each(function(){
+          $(this).prop('checked',false)
+        });
+      }
+    });
 
     $('.sidenav').sidenav();
     $('.carousel').carousel();

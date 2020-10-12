@@ -17,12 +17,12 @@ Route::get('/', function () {
 
   return view('home');
   
-})->name('home');
-Route::get('/search', 'Customer\CustomerController@search');
-Route::get('product/{id}', 'Customer\ProductController@index');
+});
+Route::get('/customer/search', 'Customer\CustomerController@search');
+Route::get('/customer/product/{id}', 'Customer\ProductController@index');
 
-Route::group(['prefix' => 'customer'], function () {
 
+Route::group(['prefix' => 'customer'], function () { 
   Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('login');
   Route::post('/login', 'CustomerAuth\LoginController@login');
   Route::post('/logout', 'CustomerAuth\LoginController@logout')->name('logout');
@@ -34,9 +34,16 @@ Route::group(['prefix' => 'customer'], function () {
   Route::post('/password/reset', 'CustomerAuth\ResetPasswordController@reset')->name('password.email');
   Route::get('/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
   Route::get('/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm');
-
-  Route::get('/profile/{id}', 'Customer\CustomerController@profile')->middleware('auth:customer');
   
+  Route::get('/profile/{id}', 'Customer\CustomerController@profile')->middleware('auth:customer');
+  Route::post('/profile/{id}', 'Customer\CustomerController@updateProfile')->middleware('auth:customer');
+
+  Route::post('product/{id}/add-to-cart/','Customer\CartController@addToCart')->middleware('auth:customer');
+  Route::get('{id}/cart','Customer\CartController@showCart')->middleware('auth:customer');
+  Route::post('{id}/cart/update','Customer\CartController@updateCart')->middleware('auth:customer');
+  Route::post('{id}/cart/remove','Customer\CartController@removeCart')->middleware('auth:customer');
+
+  //Route::checkout('{id}/checkout','Customer\CheckoutController@index')->middleware('auth:customer');
 });
 
 Route::group(['prefix' => 'admin'], function () {

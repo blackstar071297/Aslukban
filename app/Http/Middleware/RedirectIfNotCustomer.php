@@ -20,7 +20,6 @@ class RedirectIfNotCustomer
 	    if (!Auth::guard($guard)->check()) {
 	        return redirect('/customer/login');
 	    }
-
 	    return $next($request);
 	}
 }

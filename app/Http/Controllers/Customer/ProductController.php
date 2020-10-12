@@ -8,8 +8,10 @@ use App\Customer;
 use App\Product;
 use App\Images;
 use App\Manufacturer;
+
 use Illuminate\Support\Facades\DB;
 use Validator;
+use Redirect;
 class ProductController extends Controller
 {
     public function index($id){
@@ -18,4 +20,5 @@ class ProductController extends Controller
         $images = Images::where('product_id','=',$product->product_id)->get();
         return view('product',['product'=>$product,'manufacturer'=>$manufacturer,'images'=>$images]);
     }
+
 }
