@@ -8,12 +8,21 @@ use App\Customer;
 use App\Product;
 use App\Images;
 use App\Manufacturer;
-
+use App\Cart;
+use Auth;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Redirect;
 class ProductController extends Controller
 {
+    public function home(){
+        if(Auth::guard('customer')->check()){
+            $cart = Cart::where('id',Auth::guard('customer')->user()->id)->get();
+            return view('home',['cart'=>$cart]);
+        }else{
+            return view('home');
+        }
+    }
     public function index($id){
         $product = Product::findOrFail($id);
         $manufacturer = Manufacturer::where('manufacturer_id','=',$product->manufacturer_id)->get();

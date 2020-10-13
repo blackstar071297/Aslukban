@@ -23,11 +23,11 @@
         <li><a href="/"><i class="left material-icons">home</i>Home</a></li>
         <li><a href="badges.html"><i class="left material-icons">favorite</i>Wishlist</a></li>
         @if(Auth::guard('customer')->guest())
-          <li><a href="{{ url('/customer/login') }}"><i class="left material-icons">shopping_cart</i>Cart<span class="circle-badge">4</span></a></li>
+          <li><a href="{{ url('/customer/login') }}"><i class="left material-icons">shopping_cart</i>Cart</a></li>
           <li><a href="{{ url('/customer/login') }}">Login</a></li>
           <li><a href="{{ url('/customer/register') }}">Register</a></li>
         @else
-        <li><a href="/customer/{{ Auth::guard('customer')->user()->id }}/cart"><i class="left material-icons">shopping_cart</i>Cart<span class="circle-badge">4</span></a></li>
+        <li><a href="/customer/{{ Auth::guard('customer')->user()->id }}/cart"><i class="left material-icons">shopping_cart</i>Cart<span class="circle-badge">{{count(App\Cart::where('id',Auth::guard('customer')->user()->id)->get())}}</span></a></li>
           <li><a class="dropdown-trigger" href="#!" data-target="user_dropdown">{{ Auth::guard('customer')->user()->first_name }}<i class="material-icons right">arrow_drop_down</i></a></li>
         @endif
       </ul>
@@ -47,7 +47,7 @@
       <form action="/customer/search/">
         <div class="input-field col s6">
           <input type="text"class="input-search white default-input"name="q">
-          <a href="search.php" style="color:#4b4f56"><i class="material-icons right btn-right">search</i></a>
+          <a href="/customer/search/" style="color:#4b4f56"><i class="material-icons right btn-right">search</i></a>
         </div>
       </form>
 
@@ -66,10 +66,20 @@
 
 
 <ul class="sidenav" id="mobile-demo">
-  <li><a href="sass.html"><i class="left material-icons">home</i>Home</a></li>
+  <li><a href="/"><i class="left material-icons">home</i>Home</a></li>
   <li><a href="badges.html"><i class="left material-icons">favorite</i>Wishlist</a></li>
-  <li><a href="collapsible.html"><i class="left material-icons">shopping_cart</i>Cart<span class="circle-badge">4</span></a></li>
-  <li><a href="#registrationModal"class="modal-trigger"><i class="left material-icons">account_circle</i>Account</a></li>
+  @if(Auth::guard('customer')->guest())
+    <li><a href="{{ url('/customer/login') }}"><i class="left material-icons">shopping_cart</i>Cart<span class="circle-badge">4</span></a></li>
+    <li><a href="{{ url('/customer/login') }}"><i class="material-icons">login</i>Login</a></li>
+    <li><a href="{{ url('/customer/register') }}"><i class="material-icons">create</i>Register</a></li>
+  @else
+    <li><a href="/customer/{{ Auth::guard('customer')->user()->id }}/cart"><i class="left material-icons">shopping_cart</i>Cart<span class="circle-badge">4</span></a></li>
+    <li><a href="/customer/profile/{{ Auth::guard('customer')->user()->id }}"><i class="material-icons">account_box</i>Profile</a></li>
+    <li><a href="{{ url('/customer/logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="material-icons">login</i>Logout</a></li>
+    <form id="logout-form" action="{{ url('/customer/logout') }}" method="POST" style="display: none;">
+        {{ csrf_field() }}
+    </form>
+  @endif
 </ul>
 
 

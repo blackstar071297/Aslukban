@@ -111,7 +111,7 @@
       </div>
     </div>
     <div class="col s12">
-      <button class="btn blue right">Show more...</button>
+      <a href="/customer/search/all" class="btn blue right">Show more</a>
     </div>
   </div>
   <div class="row">
