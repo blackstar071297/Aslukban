@@ -61,12 +61,14 @@ $(document).ready(function(){
       if($(this).prop('checked')==true){
         
         $('.checkout-product').each(function(){
-          $(this).prop('checked',true)
+          $(this).prop('checked',true);
+          
         });
       }else if($(this).prop("checked") == false){
         
         $('.checkout-product').each(function(){
           $(this).prop('checked',false)
+          
         });
       }
     });

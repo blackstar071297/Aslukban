@@ -2,39 +2,43 @@
 
 @section('content')
 <div class="container"style="min-height:65vh">
+
 @if(session('message'))
     <div class="center green-text">
         <span class=" center">{{session('message')}}</span>
     </div>
 @endif
-<div class="table-wrapper">
-    <table class="centered">
-        <thead>
-            <tr>
-                <th>
-                    <p>
-                        <label>
-                            <input id="allCheckbox" type="checkbox" />
-                            <span ></span>
-                        </label>
-                    </p>
-                </th>
-                <th>Image</th>
-                <th>Product Name</th>
-                <th>Quantity</th>
-                <th>Total Price</th>
-                <th>Action</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <form action="" method="post"name="checkoutForm"id="checkoutForm">
-                @foreach($carts as $cart)
+@if(session()->has('failed'))
+    <p class="red-text center bold-text">{{session()->get('failed')}}</p>
+@endif
+<form action="/customer/{{$id}}/checkout" method="post" id="checkoutForm">
+@csrf
+    <div class="table-wrapper">
+        <table class="centered">
+            <thead>
+                <tr>
+                    <th>
+                        <p>
+                            <label>
+                                <input id="allCheckbox" type="checkbox" />
+                                <span ></span>
+                            </label>
+                        </p>
+                    </th>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>        
+                @foreach($carts as $cart)  
                     <tr>
                         <td>
                             <p>
-                            <label>
-                                <input class="checkout-product" name="checkout-product[]" type="checkbox" />
+                            <label for="checkout-product-{{$cart->cart_id}}">
+                                <input id="checkout-product-{{$cart->cart_id}}"class="checkout-product"value="{{$cart->cart_id}}" name="checkout_product[]" type="checkbox" />
                                 <span ></span>
                             </label>
                             </p>
@@ -47,6 +51,7 @@
                         @endforeach
                         <td>{{$cart->product_name}}</td>
                         <td>
+                            <form action=""style="display:none"></form>             
                             <form action="/customer/{{$cart->id}}/cart/update/"method="post" id="updateForm-{{$cart->cart_id}}">
                                 @csrf
                                 <input type="hidden" name="cart_id" value="{{$cart->cart_id}}">
@@ -81,12 +86,12 @@
                         </td>
                     </tr>
                 @endforeach
-            </form>  
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
+</form>
 <div>
-    <button class="btn mt-1">Proceed to checkout</button>
+    <button class="btn blue mt-1"type="submit"form="checkoutForm">Proceed to checkout</button>
 </div>
 </div>
 @endsection

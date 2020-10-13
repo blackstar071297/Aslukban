@@ -43,7 +43,7 @@ Route::group(['prefix' => 'customer'], function () {
   Route::post('{id}/cart/update','Customer\CartController@updateCart')->middleware('auth:customer');
   Route::post('{id}/cart/remove','Customer\CartController@removeCart')->middleware('auth:customer');
 
-  //Route::checkout('{id}/checkout','Customer\CheckoutController@index')->middleware('auth:customer');
+  Route::post('{id}/checkout','Customer\CheckoutController@index')->middleware('auth:customer');
 });
 
 Route::group(['prefix' => 'admin'], function () {

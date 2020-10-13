@@ -17,7 +17,7 @@
                         @break
                         @endif
                     @endforeach
-                    <div class="content">
+                    <div class="card-content">
                         <a href="/customer/product/{{$product->product_id}}" class="product-name truncate flow-text">{{$product->product_name}}</a>
                         <h6 class="product-price">P{{$product->product_price}}</h6>
                         @if(count($manufacturers) == 0)

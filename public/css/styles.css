@@ -228,4 +228,7 @@ select:focus {
     overflow: auto;
     white-space: nowrap;
   }
+  .text-bold{
+      font-weight: bold;
+  }
 
