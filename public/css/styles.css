@@ -232,3 +232,18 @@ select:focus {
       font-weight: bold;
   }
 
+  /* modified materialize pagination */
+.pagination li a {
+    color: #b1afaf;
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    line-height: 30px;
+}
+.pagination li.active a {
+    color: #000;
+}
+.pagination li.active {
+    background-color: white;
+    font-weight: bold;
+}

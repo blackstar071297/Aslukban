@@ -117,16 +117,18 @@
                     </thead>
 
                     <tbody>
-                        @foreach($images as $image)  
-                        <tr>
-                            <td><img src="/images/products/{{$image->product_image_name}}" alt="product-image" width="75px"height="75px"></td>
-                            <td>
-                                <a href="/admin/products/delete-image/{{$image->product_image_id}}"class="btn btn-floating red"onclick="event.preventDefault();document.getElementById('products-delete-form-{{$image->product_image_id}}').submit();"><i class="material-icons ">delete</i></a>
-                                <form id="products-delete-form-{{$image->product_image_id}}" action="/admin/products/delete-image/{{$image->product_image_id}}" method="post" style="display: none;">
-                                        {{ csrf_field() }}                       
-                                </form>
-                            </td>
-                        </tr>
+                        @foreach($images as $image)
+                            @if($product->product_id == $image->product_id)
+                                <tr>
+                                    <td><img src="/images/products/{{$image->product_image_name}}" alt="product-image" width="75px"height="75px"></td>
+                                    <td>
+                                        <a href="/admin/products/delete-image/{{$image->product_image_id}}"class="btn btn-floating red"onclick="event.preventDefault();document.getElementById('products-delete-form-{{$image->product_image_id}}').submit();"><i class="material-icons ">delete</i></a>
+                                        <form id="products-delete-form-{{$image->product_image_id}}" action="/admin/products/delete-image/{{$image->product_image_id}}" method="post" style="display: none;">
+                                                {{ csrf_field() }}                       
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endif
                         @endforeach
                     </tbody>
                 </table>

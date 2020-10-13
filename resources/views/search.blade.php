@@ -37,6 +37,9 @@
             @endforeach
         @endif
     </div>
+    <div class="white center">
+        {{ $products->links('vendor.pagination.bootstrap-4') }}
+    </div>
 
 </div>
 @endsection

@@ -18,7 +18,8 @@ Route::get('/', function () {
   return view('home');
   
 });
-Route::get('/customer/search', 'Customer\CustomerController@search');
+Route::get('/customer/search/all','Customer\ProductController@showAllProduct');
+Route::get('/customer/search', 'Customer\ProductController@search');
 Route::get('/customer/product/{id}', 'Customer\ProductController@index');
 
 

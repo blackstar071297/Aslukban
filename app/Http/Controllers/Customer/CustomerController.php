@@ -39,12 +39,4 @@ class CustomerController extends Controller
             return redirect('/customer/profile/'.$id)->with('success','Update success');
         }
     }
-    public function search(){
-        $query = request('q');
-        $product = DB::table('products')->where('product_name','LIKE','%'.$query.'%')->get();
-        $manufacturer = Manufacturer::all();
-        $images = Images::all();
-        
-        return view('search',['products'=>$product,'manufacturers'=>$manufacturer,'images'=>$images,'q'=>$query]);
-    }
 }
