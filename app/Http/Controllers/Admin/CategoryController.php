@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Category;
 use Validator;
 use Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -21,13 +22,18 @@ class CategoryController extends Controller
     public function store(request $request){
         $validator = Validator::make($request->all(),[
             'category_name' => 'required',
+            'category_image' => 'required|mimes:jpeg,jpg,png',
         ]);
         if($validator->fails()){
-            return redirect('/admin/new-category')->withErrors($validator)->withInput();
+            return redirect('/admin/category/new-category')->withErrors($validator)->withInput();
         }else{
+            $path = Storage::putFile('/images/category/', $request->file('category_image'));
+            $image_name = basename($path);
+
             $category = new Category();
             $category->category_name = $request->get('category_name');
             $category->category_description = $request->get('category_description');
+            $category->image = $image_name;
             $category->save();
             return redirect('/admin/category/');
         }
@@ -37,8 +43,7 @@ class CategoryController extends Controller
         return view('admin/category/show-category',['category'=> $category]);
     }
     public function update($id,request $request){
-        $category = Category::findOrFail($id);
-
+        
         $validator = Validator::make($request->all(),[
             'category_name' => 'required',
         ]);
@@ -46,6 +51,12 @@ class CategoryController extends Controller
             return redirect('/admin/category/')->withErrors($validator)->withInput();
         }else{
             $category = Category::findOrFail($id);
+            if($request->hasFile('category_image')){
+                Storage::disk('public')->delete('images/category/'.$category->image);
+                $path = Storage::putFile('/images/category/', $request->file('category_image'));
+                $image_name = basename($path);
+                $category->image = $image_name;
+            }
             $category->category_name = $request->get('category_name');
             $category->category_description = $request->get('category_description');
             $category->save();

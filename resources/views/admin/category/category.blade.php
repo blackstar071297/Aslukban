@@ -13,6 +13,7 @@
                         <table class="centered">
                             <thead>
                             <tr>
+                                <th>Image</th>
                                 <th>Category name</th>
                                 <th>Category description</th>
                                 <th>Action</th>
@@ -22,6 +23,7 @@
                             <tbody>
                             @foreach($categories as $category)
                             <tr>
+                            <td><img src="/images/category/{{$category->image}}" alt="category-image" width="75px"height="75px"></td>
                                 <td>{{$category->category_name}}</td>
                                 <td>{{$category->category_description}}</td>
                                 <td>

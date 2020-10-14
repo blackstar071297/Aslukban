@@ -32,7 +32,7 @@
                     <div class="file-field input-field">
                         <div class="btn">
                             <span>File</span>
-                            <input name="manufacturer_image"type="file" class="@error('manufacturer_description') is-invalid @enderror">
+                            <input name="manufacturer_image"type="file" class="@error('manufacturer_image') is-invalid @enderror">
                         </div>
                         <div class="file-path-wrapper">
                             <input class="file-path validate" type="text">

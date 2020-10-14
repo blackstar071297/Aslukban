@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Product;
 use App\Images;
 use App\Manufacturer;
+use App\Category;
 use Hash;
 use Redirect;
 use Illuminate\Support\Facades\DB;
@@ -27,7 +28,8 @@ class ProductController extends Controller
     }
     public function showNewProduct(){
         $manufacturer = Manufacturer::all();
-        return view('admin.products.new-product',['manufacturers'=> $manufacturer]);
+        $category = Category::all();
+        return view('admin.products.new-product',['manufacturers'=> $manufacturer,'categories'=> $category]);
     }
     public function store(request $request){
         $validator = Validator::make($request->all(),[
@@ -40,6 +42,7 @@ class ProductController extends Controller
             'product_width' => 'required|integer',
             'product_weight' => 'required|integer',
             'manufacturer' => 'required|integer',
+            'category' => 'required|integer',
         ]);
         if($validator->fails()){
             return redirect('/admin/products/new-product')->withErrors($validator)->withInput();
@@ -54,6 +57,7 @@ class ProductController extends Controller
             $product->product_width = $request->get('product_width');
             $product->product_weight = $request->get('product_weight');
             $product->manufacturer_id = $request->get('manufacturer');
+            $product->category_id = $request->get('category');
             $product->save();
             
             if($request->hasFile('product_images')){

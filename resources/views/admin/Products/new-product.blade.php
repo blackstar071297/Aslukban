@@ -96,10 +96,10 @@
                     </div>
                     <div class="input-field">
                         <i class="material-icons prefix">category</i>
-                        <select name="manufacturer" id="manufacturer"class="@error('manufacturer') is-invalid @enderror">
+                        <select name="category" id="category"class="@error('category') is-invalid @enderror">
                                 <option disabled selected>Choose your option</option>
-                            @foreach($manufacturers as $manufacturer)
-                                <option value="{{$manufacturer->manufacturer_id}}"> {{$manufacturer->manufacturer_name}} </option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->category_id}}"> {{$category->category_name}} </option>
                             @endforeach
                         </select>
                         <label for="manufacturer">Manufacturer</label>

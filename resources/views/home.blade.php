@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-
+    @if($products->count() > 0)
     <div class="col s12 m12 l12">
       <h4 class="flow-text"style="font-weight:bold">Products</h4>
     </div>
@@ -58,7 +58,9 @@
     <div class="col s12">
       <a href="/search/all" class="btn blue right">Show more</a>
     </div>
+    @endif
   </div>
+  
   <div class="row">
     <div class="col s12">
       <h5 class="flow-text"style="font-weight:bold">Car Brand</h5>
@@ -95,6 +97,7 @@
       <button class="btn blue right">Show more...</button>
     </div>
   </div>
+
   <div class="row">
     <div class="col s12">
       <h5 class="flow-text"style="font-weight:bold">Car parts</h5>
