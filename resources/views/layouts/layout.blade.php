@@ -44,10 +44,10 @@
     @endif
     <div class="nav-content"style="margin-top:2px;margin-bottom:0px;">
       <div class="row container"style="margin-bottom:0px">
-      <form action="/customer/search/">
+      <form action="/search">
         <div class="input-field col s6">
           <input type="text"class="input-search white default-input"name="q">
-          <a href="/customer/search/" style="color:#4b4f56"><i class="material-icons right btn-right">search</i></a>
+          <a href="/search" style="color:#4b4f56"><i class="material-icons right btn-right">search</i></a>
         </div>
       </form>
 

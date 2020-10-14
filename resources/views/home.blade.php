@@ -34,84 +34,29 @@
     <div class="col s12 m12 l12">
       <h4 class="flow-text"style="font-weight:bold">Products</h4>
     </div>
+    @foreach($products as $product)
     <div class="col s6 m6 l3">
       <div class="card">
-        <div class="card-image">
-          <img src="images/products/product-1.jpg" alt="product 1">
-        </div>
+        @if(count($images) > 0)
+          @foreach($images as $image)
+            @if($product->product_id == $image->product_id)
+              <div class="card-image">
+                <img src="images/products/{{$image->product_image_name}}">
+              </div>
+              @break
+            @endif
+          @endforeach
+        @endif
         <div class="card-content">
-          <a href="product.php" class="product-name truncate flow-text">Alternator - Isuzu</a>
-          <h6 class="product-price">P1600</h6>
-          <a href=""class="yellow-text">
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-          </a><br>
-          <a href="#"class="grey-text">Depo</a>
+          <a href="/customer/product/{{$product->product_id}}" class="product-name truncate flow-text">{{$product->product_name}}</a>
+          <h6 class="product-price">P{{$product->product_price}}</h6>
+          <a href="/search?q={{$product->manufacturer_name}}"class="grey-text">{{$product->manufacturer_name}}</a>
         </div>
       </div>
     </div>
-    <div class="col s6 m6 l3">
-      <div class="card">
-        <div class="card-image">
-          <img src="images/products/product-1.jpg" alt="product 1">
-        </div>
-        <div class="card-content">
-          <a href="product.php" class="product-name truncate flow-text">Alternator - Isuzu</a>
-          <h6 class="product-price">P1600</h6>
-          <a href=""class="yellow-text">
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny grey-text text-lighten-1">star</i>
-          </a><br>
-          <a href="#"class="grey-text">Depo</a>
-        </div>
-      </div>
-    </div>
-    <div class="col s6 m6 l3">
-      <div class="card">
-        <div class="card-image">
-          <img src="images/products/product-1.jpg" alt="product 1">
-        </div>
-        <div class="card-content">
-          <a href="product.php" class="product-name truncate flow-text">Alternator - Isuzu</a>
-          <h6 class="product-price">P1600</h6>
-          <a href=""class="yellow-text">
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny grey-text text-lighten-1">star</i>
-            <i class="material-icons tiny grey-text text-lighten-1">star</i>
-          </a><br>
-          <a href="#"class="grey-text">Depo</a>
-        </div>
-      </div>
-    </div>
-    <div class="col s6 m6 l3">
-      <div class="card">
-        <div class="card-image">
-          <img src="images/products/product-1.jpg" alt="product 1">
-        </div>
-        <div class="card-content">
-          <a href="product.php" class="product-name truncate flow-text">Alternator - Isuzu</a>
-          <h6 class="product-price">P1600</h6>
-          <a href=""class="yellow-text">
-            <i class="material-icons tiny">star</i>
-            <i class="material-icons tiny grey-text text-lighten-1">star</i>
-            <i class="material-icons tiny grey-text text-lighten-1">star</i>
-            <i class="material-icons tiny grey-text text-lighten-1">star</i>
-            <i class="material-icons tiny grey-text text-lighten-1">star</i>
-          </a><br>
-          <a href="#"class="grey-text">Depo</a>
-        </div>
-      </div>
-    </div>
+    @endforeach
     <div class="col s12">
-      <a href="/customer/search/all" class="btn blue right">Show more</a>
+      <a href="/search/all" class="btn blue right">Show more</a>
     </div>
   </div>
   <div class="row">

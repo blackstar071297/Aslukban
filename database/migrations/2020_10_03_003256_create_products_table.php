@@ -22,6 +22,8 @@ class CreateProductsTable extends Migration
             $table->integer('product_height');
             $table->integer('product_width');
             $table->integer('product_weight');
+            $table->integer('category_id')->unsigned()->nullable();
+            $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('set null');
             $table->integer('manufacturer_id')->unsigned()->nullable();
             $table->foreign('manufacturer_id')->references('manufacturer_id')->on('manufacturers')->onDelete('set null');
         });

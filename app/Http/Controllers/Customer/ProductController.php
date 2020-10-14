@@ -16,12 +16,9 @@ use Redirect;
 class ProductController extends Controller
 {
     public function home(){
-        if(Auth::guard('customer')->check()){
-            $cart = Cart::where('id',Auth::guard('customer')->user()->id)->get();
-            return view('home',['cart'=>$cart]);
-        }else{
-            return view('home');
-        }
+        $products = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->paginate(4);
+        $images = Images::select('product_id','product_image_name')->get();
+        return view('home',['products'=>$products,'images'=>$images]);
     }
     public function index($id){
         $product = Product::findOrFail($id);
@@ -37,11 +34,11 @@ class ProductController extends Controller
      }
     public function search(){
         $query = request('q');
-        $product = DB::table('products')->where('product_name','LIKE','%'.$query.'%')->paginate(10);
-        $manufacturer = Manufacturer::all();
+        $manufacturer = request('manufacturer');
+        $products = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->where('products.product_name','LIKE','%'.$query.'%')->orWhere('manufacturers.manufacturer_name','LIKE','%'.$query.'%')->paginate(10);
         $images = Images::all();
-        
-        return view('search',['products'=>$product,'manufacturers'=>$manufacturer,'images'=>$images,'q'=>$query]);
+        return view('search',['products'=>$products,'manufacturers'=>$manufacturer,'images'=>$images,'q'=>$query]);
+
     }
 
 }
