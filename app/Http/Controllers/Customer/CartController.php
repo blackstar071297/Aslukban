@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 class CartController extends Controller
 {
     public function addToCart($id,request $request){
-        if(Auth::guard('customer')->user()->id == $id){
+        if(Auth::guard('customer')->user()->id == $request->get('customer_id')){
             $validator = Validator::make($request->all(),[
                 'product_id' => 'required|integer',
                 'customer_id' => 'required|integer',
@@ -23,6 +23,7 @@ class CartController extends Controller
             ]);
             if($validator->fails()){
                 return redirect::back()->withErrors($validator)->withInput();
+               
             }else{
                 $cart = DB::table('cart')->where('product_id',$request->get('product_id'))->where('id',$request->get('customer_id'))->get();
                 if(count($cart) == 0){

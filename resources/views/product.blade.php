@@ -52,9 +52,6 @@
                                     <div class="col s12 m12 l6 mt-1">
                                         <button class="btn blue btn-large w-100">Add to cart</button>
                                     </div>        
-                                    <div class="col s12 m12 l6 mt-1">
-                                        <a href="checkout.php"class="btn w-100 btn-large blue">Buy now</a>
-                                    </div>  
                                 </form>
                             </div>
                         </div>

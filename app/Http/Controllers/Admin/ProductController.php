@@ -38,6 +38,7 @@ class ProductController extends Controller
             'product_name' => 'required',
             'product_code' => 'required',
             'product_price' => 'required|integer',
+            'product_description' => 'required',
             'product_height' => 'required|integer',
             'product_width' => 'required|integer',
             'product_weight' => 'required|integer',
@@ -80,7 +81,8 @@ class ProductController extends Controller
         $products = Product::findOrFail($id);
         $images = Images::all();
         $manufacturer = Manufacturer::all();
-        return view('admin.products.show-product',['product'=>$products,'manufacturers'=>$manufacturer,'images'=>$images]);
+        $category = Category::all();
+        return view('admin.products.show-product',['product'=>$products,'manufacturers'=>$manufacturer,'images'=>$images,'categories'=>$category]);
 
     }
     public function update($id,request $request){
@@ -93,6 +95,7 @@ class ProductController extends Controller
             'product_width' => 'required|integer',
             'product_weight' => 'required|integer',
             'manufacturer' => 'required|integer',
+            'category' => 'required|integer',
         ]);
         if($validator->fails()){
             return redirect('/admin/products/'.$id)->withErrors($validator)->withInput();
@@ -107,6 +110,7 @@ class ProductController extends Controller
                 $product->product_width = $request->get('product_width');
                 $product->product_weight = $request->get('product_weight');
                 $product->manufacturer_id = $request->get('manufacturer');
+                $product->category_id = $request->get('category');
                 $product->save();
                 
                 if($request->hasFile('product_images')){           

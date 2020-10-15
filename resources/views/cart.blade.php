@@ -90,7 +90,7 @@
         </table>
     </div>
 </form>
-<div>
+<div class="mb-1">
     <button class="btn blue mt-1"type="submit"form="checkoutForm">Proceed to checkout</button>
 </div>
 </div>

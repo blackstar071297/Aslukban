@@ -94,6 +94,21 @@
                             </span>
                         @enderror
                     </div>
+                    <div class="input-field">
+                        <i class="material-icons prefix">category</i>
+                        <select name="category" id="category"class="@error('category') is-invalid @enderror">
+                                <option disabled selected>Choose your option</option>
+                            @foreach($categories as $category)
+                                <option value="{{$category->category_id}}"> {{$category->category_name}} </option>
+                            @endforeach
+                        </select>
+                        <label for="category">Category</label>
+                        @error('category')
+                            <span class="red-text">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
+                    </div>
                     <div class="input-field input-image">
                         <div class="row image-row">                      
                         </div>

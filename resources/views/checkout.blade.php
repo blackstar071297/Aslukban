@@ -92,7 +92,14 @@
                                 </div>
                             </div>
                             <div class="col s12">
-                                <button class="btn blue w-100">Place order</button>
+                                <form action="/customer/{{$customer->id}}/checkout/place-order" method="post">
+                                @csrf
+                                    @foreach($checkout_product as $product)
+                                        <input type="hidden" name="cart[]"value="{{$product}}">
+                                    @endforeach
+                                    
+                                    <button class="btn blue w-100">Place order</button>
+                                </form>         
                             </div>
                         </div>
                     </div>

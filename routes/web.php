@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/','Customer\ProductController@home');
-Route::get('/search/all','Customer\ProductController@showAllProduct');
+Route::get('/search/all-products','Customer\ProductController@showAllProduct');
 Route::get('/search', 'Customer\ProductController@search');
 Route::get('/customer/product/{id}', 'Customer\ProductController@index');
 
@@ -41,6 +41,7 @@ Route::group(['prefix' => 'customer'], function () {
   Route::post('{id}/cart/remove','Customer\CartController@removeCart')->middleware('auth:customer');
 
   Route::post('{id}/checkout','Customer\CheckoutController@index')->middleware('auth:customer');
+  Route::post('{id}/checkout/place-order','Customer\CheckoutController@store')->middleware('auth:customer');
 });
 
 Route::group(['prefix' => 'admin'], function () {

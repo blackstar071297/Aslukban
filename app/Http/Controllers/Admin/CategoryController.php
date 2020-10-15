@@ -64,8 +64,11 @@ class CategoryController extends Controller
         }
     }
     public function destroy($id){
-        $category = Category::findOrFail($id);
-        $category->delete();
-        return redirect('/admin/category');
+        
+        if($category = Category::findOrFail($id)){
+            Storage::disk('public')->delete('images/category/'.$category->image);
+            $category->delete();
+            return redirect('/admin/category');
+        }
     }
 }

@@ -31,7 +31,7 @@
                     </div>
                     <div class="input-field">
                         <i class="prefix fas fa-keyboard"></i>
-                        <textarea name="product_description" id="product_description" class="@error('product_description') is-invalid @enderror materialize-textarea"cols="30" rows="10"value="{{ old('product_description') }}"></textarea>
+                        <textarea name="product_description" id="product_description" class="@error('product_description') is-invalid @enderror materialize-textarea"cols="30" rows="10">{{ old('product_description')}}</textarea>
                         <label for="product_description">Product Description</label>
                         @error('product_description')
                             <span class="red-text">
@@ -102,8 +102,8 @@
                                 <option value="{{$category->category_id}}"> {{$category->category_name}} </option>
                             @endforeach
                         </select>
-                        <label for="manufacturer">Manufacturer</label>
-                        @error('manufacturer')
+                        <label for="category">Category</label>
+                        @error('category')
                             <span class="red-text">
                                 <strong>{{ $message }}</strong>
                             </span>
