@@ -23,7 +23,7 @@ class CheckoutController extends Controller
             $customer = Customer::find($id);
             $images = Images::all();
             $carts = Cart::join('products','products.product_id','=','cart.product_id')->findMany($request->get('checkout_product'));
-            return view('checkout',['carts'=>$carts,'images'=>$images,'customer'=>$customer,'checkout_product'=>$request->get('checkout_product')]);
+            return view('customer.checkout',['carts'=>$carts,'images'=>$images,'customer'=>$customer,'checkout_product'=>$request->get('checkout_product')]);
         }
     }
     public function store($id,request $request){

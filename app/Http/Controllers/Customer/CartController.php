@@ -51,7 +51,7 @@ class CartController extends Controller
             $images = Images::all();
             $cart = DB::table('cart')->join('customers','customers.id','=','cart.id')
             ->join('products','products.product_id','=','cart.product_id')->where('customers.id','=',$id)->get();
-            return view('cart',['carts'=>$cart,'images'=>$images,'id'=>$id]);
+            return view('customer.cart',['carts'=>$cart,'images'=>$images,'id'=>$id]);
         }else{
             abort(404);
         }

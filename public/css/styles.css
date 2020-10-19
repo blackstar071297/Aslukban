@@ -1,4 +1,6 @@
-
+body{
+    background-color:whitesmoke;
+}
 /* label color */
 .input-field label {
     color: grey !important;
@@ -247,3 +249,27 @@ select:focus {
     background-color: white;
     font-weight: bold;
 }
+
+/* custom tabs */
+.tabs .tab .disabled a{
+    color:grey !important;
+} /*disabled to the text*/
+.tabs .tab a{
+    background-color:white !important;
+    color:#000 !important;
+} /*Black color to the text*/
+
+.tabs .tab a:hover {
+    background-color:#eee !important;
+    color:#000 !important;
+} /*Text color on hover*/
+
+.tabs .tab a.active {
+    background-color: #374A8E !important;
+    color:rgb(255, 255, 255) !important;
+    font-weight: bold;
+} /*Background and text color when a tab is active*/
+
+.tabs .indicator {
+    background-color: #F58635 !important;
+} /*Color of underline*/

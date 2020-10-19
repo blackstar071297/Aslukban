@@ -85,4 +85,7 @@ $(document).ready(function(){
         fullWidth: true,
         indicators: true
       });
+    $('.tabs').tabs();
+    $('.tabs').tabs('select','profile_tab');
+
 });

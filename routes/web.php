@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','Customer\ProductController@home');
 Route::get('/search/all-products','Customer\ProductController@showAllProduct');
 Route::get('/search', 'Customer\ProductController@search');
-Route::get('/customer/product/{id}', 'Customer\ProductController@index');
+Route::get('/product/{id}', 'Customer\ProductController@index');
 
 
 Route::group(['prefix' => 'customer'], function () { 
@@ -33,8 +33,9 @@ Route::group(['prefix' => 'customer'], function () {
   Route::get('/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm');
   
   Route::get('/profile/{id}', 'Customer\CustomerController@profile')->middleware('auth:customer');
-  Route::post('/profile/{id}', 'Customer\CustomerController@updateProfile')->middleware('auth:customer');
-
+  Route::get('/profile/{id}/update-profile', 'Customer\CustomerController@showUpdateProfile')->middleware('auth:customer');
+  Route::post('/profile/{id}/update-profile', 'Customer\CustomerController@updateProfile')->middleware('auth:customer');
+  Route::get('/profile/{id}/order','Customer\CustomerController@showOrder');
   Route::post('product/{id}/add-to-cart/','Customer\CartController@addToCart')->middleware('auth:customer');
   Route::get('{id}/cart','Customer\CartController@showCart')->middleware('auth:customer');
   Route::post('{id}/cart/update','Customer\CartController@updateCart')->middleware('auth:customer');
@@ -42,6 +43,8 @@ Route::group(['prefix' => 'customer'], function () {
 
   Route::post('{id}/checkout','Customer\CheckoutController@index')->middleware('auth:customer');
   Route::post('{id}/checkout/place-order','Customer\CheckoutController@store')->middleware('auth:customer');
+
+  
 });
 
 Route::group(['prefix' => 'admin'], function () {

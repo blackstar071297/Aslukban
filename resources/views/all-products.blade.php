@@ -16,7 +16,7 @@
                             @endif
                         @endforeach
                         <div class="card-content">
-                            <a href="/customer/product/{{$product->product_id}}" class="product-name truncate flow-text">{{$product->product_name}}</a>
+                            <a href="/product/{{$product->product_id}}" class="product-name truncate flow-text">{{$product->product_name}}</a>
                             <h6 class="product-price">P{{$product->product_price}}</h6>
                             <div class="chip">
                                 <a href="/search?q={{$product->manufacturer_name}}"class="grey-text">{{$product->manufacturer_name}}</a><br>

@@ -35,7 +35,8 @@
     @if(Auth::guard('customer')->guest())
     @else
     <ul id="user_dropdown" class="dropdown-content">
-      <li><a href="/customer/profile/{{ Auth::guard('customer')->user()->id }}">Profile</a></li>
+      <li><a href="/customer/profile/{{ Auth::guard('customer')->user()->id }}">My Profile</a></li>
+      <li><a href="/customer/profile/{{ Auth::guard('customer')->user()->id }}/order">My orders</a></li>
       <li><a href="{{ url('/customer/logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a></li>
       <form id="logout-form" action="{{ url('/customer/logout') }}" method="POST" style="display: none;">
           {{ csrf_field() }}
@@ -81,7 +82,21 @@
     </form>
   @endif
 </ul>
-
+<!-- <nav>
+<div class="nav-wrapper">
+  <div class="col s12">
+    <a href="/"class="breadcrumb">Home</a>             
+      <?php $link = "" ?>
+      @for($i = 1; $i <= count(Request::segments()); $i++)
+          @if($i < count(Request::segments()) & $i > 0)
+          <?php $link .= "/" . Request::segment($i); ?>
+          <a href="<?= $link ?>"class="breadcrumb">{{ ucwords(str_replace('-',' ',Request::segment($i)))}}</a>
+          @else {{ucwords(str_replace('-',' ',Request::segment($i)))}}
+          @endif
+      @endfor
+    </div>
+  </div>
+</nav> -->
 
 @yield('content')
 <div class="modal"id="registrationModal"style="background-color:#374A8E">
