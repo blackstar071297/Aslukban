@@ -9,6 +9,7 @@ use App\Images;
 use App\Customer;
 use App\Product;
 use App\Order;
+use App\Payment;
 use Validator;
 use Redirect;
 class CheckoutController extends Controller
@@ -29,6 +30,15 @@ class CheckoutController extends Controller
     public function store($id,request $request){
         $receipt = rand(1,999999);
         $carts = $request->get('cart');
+        $payment = new Payment();
+        $payment->payment_status = 0;
+        if(!empty($request->get('reference_number'))){
+            $payment->reference_number = $request->get('reference_number');
+        }
+        $payment->receipt = $receipt;
+        $payment->payment_type = $request->get('payment_method');
+        $payment->save();
+
         foreach($carts as $cart_id){
             $order = new Order();
             $cart = Cart::join('products','products.product_id','=','cart.product_id')->findOrFail($cart_id);
@@ -40,7 +50,8 @@ class CheckoutController extends Controller
             $order->status = 0;
             $order->save();
             $cart->delete();
-            echo $order;
+            
         }
+        return redirect('/')->with('success','Your order is successfully place');
     }
 }

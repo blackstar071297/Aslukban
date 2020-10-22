@@ -41,8 +41,7 @@
                                     <button class="btn blue btn-large w-100">Add to cart</button>
                                 </div>       
                             </form>
-                            <button class="btn blue"type="submit"form="form-{{$product->product_id}}"><i class="material-icons">shopping_cart</i></button>
-                            <a class="btn blue"href="#"><i class="material-icons">favorite</i></a> 
+                            <button class="btn blue w-100"type="submit"form="form-{{$product->product_id}}"><i class="material-icons left hide-on-small-only">shopping_cart</i>Add to cart</button> 
                         </div>
                     </div>
                 </div>

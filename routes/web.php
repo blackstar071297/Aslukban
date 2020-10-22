@@ -83,5 +83,8 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/products/delete-image/{id}','Admin\ProductController@destroyImage')->middleware('auth:admin');
 
   Route::get('/customers','Admin\CustomerController@index')->middleware('auth:admin');
+
+  Route::get('/orders','Admin\OrderController@showCustomersOrder')->middleware('auth:admin');
+  Route::get('/orders/{receipt_id}','Admin\OrderController@showOrder')->middleware('auth:admin');
 });
 

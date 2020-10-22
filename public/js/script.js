@@ -87,5 +87,10 @@ $(document).ready(function(){
       });
     $('.tabs').tabs();
     $('.tabs').tabs('select','profile_tab');
+    $('.datepicker').datepicker();
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd'
+    });
+    $('.tooltipped').tooltip();
 
 });

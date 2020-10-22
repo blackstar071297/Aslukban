@@ -21,7 +21,7 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="/"><i class="left material-icons">home</i>Home</a></li>
-        <li><a href="badges.html"><i class="left material-icons">favorite</i>Wishlist</a></li>
+        <!-- <li><a href="badges.html"><i class="left material-icons">favorite</i>Wishlist</a></li> -->
         @if(Auth::guard('customer')->guest())
           <li><a href="{{ url('/customer/login') }}"><i class="left material-icons">shopping_cart</i>Cart</a></li>
           <li><a href="{{ url('/customer/login') }}">Login</a></li>

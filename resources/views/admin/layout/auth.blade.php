@@ -60,7 +60,7 @@
                     <a class="collapsible-header"><i class="material-icons">shopping_cart</i>Sales<i class="material-icons right">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                     <ul>
-                        <li><a href="#!">Orders</a></li>
+                        <li><a href="/admin/orders">Orders</a></li>
                     </ul>
                     </div>
                 </li>
