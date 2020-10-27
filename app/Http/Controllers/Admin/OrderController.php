@@ -48,12 +48,10 @@ class OrderController extends Controller
         return view('admin.orders.order',['customers'=>$customer]);
     }
     public function showOrder($receipt_id){
-        $jsonString = file_get_contents('json/province.json');
-        $provinces = json_decode($jsonString, true);
-        return $provinces[0];
+        
         $order = Customer::join('orders','orders.id','=','customers.id')
         ->join('products','products.product_id','=','orders.product_id')
         ->where('orders.receipt',$receipt_id)->get();
-        return view('admin.orders.show-order',['order'=>$order,'provinces'=>$provinces]);
+        return view('admin.orders.show-order',['order'=>$order]);
     }
 }

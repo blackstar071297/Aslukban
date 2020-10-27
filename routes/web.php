@@ -91,5 +91,7 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/employees/{id}','Admin\EmployeeController@updateEmployee')->middleware('admin');
   Route::get('/new-employee','Admin\EmployeeController@showRegister')->middleware('auth:admin');
   Route::post('/new-employee','Admin\EmployeeController@register')->middleware('auth:admin');
+
+  Route::get('/admin/dashboard','Admin\DashboardController@index')->middleware('auth:admin');
 });
 
