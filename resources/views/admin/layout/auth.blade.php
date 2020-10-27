@@ -84,7 +84,10 @@
                     <a class="collapsible-header"><i class="material-icons">groups</i>Employees<i class="material-icons right">arrow_drop_down</i></a>
                     <div class="collapsible-body">
                     <ul>
-                        <li><a href="#!">Employees</a></li>
+                        <li><a href="/admin/employees">Employees</a></li>
+                        @if(Auth::guard('admin')->user()->role == 0)
+                            <li><a href="/admin/new-employee">New employees</a></li>
+                        @endif
                     </ul>
                     </div>
                 </li>
@@ -115,5 +118,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <script src="/js/script.js"></script>
+<script src="/js/switcher.js"></script>
 </body>
 </html>

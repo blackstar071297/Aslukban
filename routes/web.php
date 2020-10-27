@@ -52,8 +52,6 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/login', 'AdminAuth\LoginController@login');
   Route::post('/logout', 'AdminAuth\LoginController@logout')->name('logout');
 
-  Route::get('/register', 'AdminAuth\RegisterController@showRegistrationForm')->name('register');
-  Route::post('/register', 'AdminAuth\RegisterController@register');
 
   Route::post('/password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
   Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('password.email');
@@ -86,5 +84,12 @@ Route::group(['prefix' => 'admin'], function () {
 
   Route::get('/orders','Admin\OrderController@showCustomersOrder')->middleware('auth:admin');
   Route::get('/orders/{receipt_id}','Admin\OrderController@showOrder')->middleware('auth:admin');
+
+  Route::get('/employees','Admin\EmployeeController@index')->middleware('auth:admin');
+  Route::post('/employees/update-status/{id}','Admin\EmployeeController@changeStatus')->middleware('auth:admin');
+  Route::get('/employees/{id}','Admin\EmployeeController@showEmployee')->middleware('admin');
+  Route::post('/employees/{id}','Admin\EmployeeController@updateEmployee')->middleware('admin');
+  Route::get('/new-employee','Admin\EmployeeController@showRegister')->middleware('auth:admin');
+  Route::post('/new-employee','Admin\EmployeeController@register')->middleware('auth:admin');
 });
 

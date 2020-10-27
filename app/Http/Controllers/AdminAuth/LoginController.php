@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Hesto\MultiAuth\Traits\LogsoutGuard;
 use Redirect;
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -67,4 +68,41 @@ class LoginController extends Controller
     public function logoutToPath() {
         return '/admin/dashboard';
     }
+    protected function credentials(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+        $credentials['status'] = 1;
+        return $credentials;
+    }
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $errors = [$this->username() => trans('auth.failed')];
+
+        // Load user from database
+        $user = \App\Admin::where('email', $request->get('email'))->get();
+       
+        // Check if user was successfully loaded, that the password matches
+        // and active is not 1. If so, override the default error message.
+        if(count($user) > 0){
+            if ($user && \Hash::check($request->get('password'), $user->first()->password) && $user->first()->status != 1) {
+                $errors = [$this->username() => 'Your account is disabled by administrator'];
+            }
+            if(empty($user)){
+                $errors = [$this->username() => 'Email not found'];
+            }
+            if(!\Hash::check($request->get('password'), $user->first()->password)){
+                $errors = [$this->username() => 'Wrong password, try Again'];
+            }
+        }
+        
+
+        if ($request->expectsJson()) {
+            return response()->json($errors, 422);
+        }
+
+        return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors($errors);
+    }
+
 }
