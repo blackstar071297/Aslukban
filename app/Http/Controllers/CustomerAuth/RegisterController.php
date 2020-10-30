@@ -48,9 +48,9 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make($data,[
             'first_name' => 'required|max:255',
-            'middle_name' => 'required|max:255',
+            'middle_name' => 'max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:customers',
             'password' => 'required|min:6|confirmed',
@@ -69,11 +69,10 @@ class RegisterController extends Controller
             'first_name' => $data['first_name'],
             'middle_name' => $data['middle_name'],
             'last_name' => $data['last_name'],
-            'phone_number' => $data['phone_number'],
-            'address' => $data['address'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
     }
 
     /**
@@ -83,8 +82,9 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
+        
         return view('customer.auth.register');
-    }
+    }   
 
     /**
      * Get the guard to be used during registration.

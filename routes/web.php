@@ -17,19 +17,21 @@ Route::get('/','Customer\ProductController@home');
 Route::get('/search/all-products','Customer\ProductController@showAllProduct');
 Route::get('/search', 'Customer\ProductController@search');
 Route::get('/product/{id}', 'Customer\ProductController@index');
-
+Route::get('province','Customer\AddressController@getProvinces');
+Route::get('city','Customer\AddressController@getCity');
+Route::get('barangay','Customer\AddressController@getBarangay');
 
 Route::group(['prefix' => 'customer'], function () { 
-  Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('login');
+  Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('customer.login');
   Route::post('/login', 'CustomerAuth\LoginController@login');
-  Route::post('/logout', 'CustomerAuth\LoginController@logout')->name('logout');
+  Route::post('/logout', 'CustomerAuth\LoginController@logout')->name('customer.logout');
 
-  Route::get('/register', 'CustomerAuth\RegisterController@showRegistrationForm')->name('register');
+  Route::get('/register', 'CustomerAuth\RegisterController@showRegistrationForm')->name('customer.register');
   Route::post('/register', 'CustomerAuth\RegisterController@register');
 
-  Route::post('/password/email', 'CustomerAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
-  Route::post('/password/reset', 'CustomerAuth\ResetPasswordController@reset')->name('password.email');
-  Route::get('/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+  Route::post('/password/email', 'CustomerAuth\ForgotPasswordController@sendResetLinkEmail')->name('customer.password.request');
+  Route::post('/password/reset', 'CustomerAuth\ResetPasswordController@reset')->name('customer.password.email');
+  Route::get('/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm')->name('customer.password.reset');
   Route::get('/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm');
   
   Route::get('/profile/{id}', 'Customer\CustomerController@profile')->middleware('auth:customer');
@@ -44,7 +46,9 @@ Route::group(['prefix' => 'customer'], function () {
   Route::post('{id}/checkout','Customer\CheckoutController@index')->middleware('auth:customer');
   Route::post('{id}/checkout/place-order','Customer\CheckoutController@store')->middleware('auth:customer');
 
-  
+  Route::get('{id}/address/', 'Customer\AddressController@showAddress')->middleware('auth:customer');
+  Route::get('{id}/address/new-address/', 'Customer\AddressController@showNewAddress')->middleware('auth:customer');
+  Route::post('{id}/address/new-address/', 'Customer\AddressController@newAddress')->middleware('auth:customer');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -53,9 +57,9 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/logout', 'AdminAuth\LoginController@logout')->name('logout');
 
 
-  Route::post('/password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail')->name('password.request');
-  Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('password.email');
-  Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('password.reset');
+  Route::post('/password/email', 'AdminAuth\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.request');
+  Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset')->name('admin.password.email');
+  Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm')->name('admin.password.reset');
   Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
 
   Route::get('/category','Admin\CategoryController@index')->middleware('auth:admin');
@@ -89,9 +93,9 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/employees/update-status/{id}','Admin\EmployeeController@changeStatus')->middleware('auth:admin');
   Route::get('/employees/{id}','Admin\EmployeeController@showEmployee')->middleware('admin');
   Route::post('/employees/{id}','Admin\EmployeeController@updateEmployee')->middleware('admin');
-  Route::get('/new-employee','Admin\EmployeeController@showRegister')->middleware('auth:admin');
-  Route::post('/new-employee','Admin\EmployeeController@register')->middleware('auth:admin');
+  Route::get('/new-employee','Admin\EmployeeController@showRegister');
+  Route::post('/new-employee','Admin\EmployeeController@register');
 
-  Route::get('/admin/dashboard','Admin\DashboardController@index')->middleware('auth:admin');
+ 
 });
 

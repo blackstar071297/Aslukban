@@ -10,32 +10,49 @@
         @endif
         <div class="col s12 mt-1">
             <ul class="tabs">
-                <li class="tab col s6"><a class="active" href="#profile_tab">Profile</a></li>
+                <li class="tab col s6"><a class="active" href="#profile_tab">My Account</a></li>
                 <li class="tab col s6"><a href="#test2">Test 2</a></li>
             </ul>
         </div>
         <div class="col s12">
             <div id="profile_tab" class="col s12 white">
-                <div class="row center">
-                    <div class="col s12 m6 l3">
-                        <p class="text-bold">Full name</p>
-                        <p>{{$customer->first_name}} {{$customer->middle_name }} {{$customer->last_name}}</p>
+                <div class="row">
+                    <div class="col s12 m4 l4">
+                        <div class="card"style="min-height:140px">
+                            <div class="card-content">
+                                <p class="text-bold">Profile|<a href="/customer/profile/{{$customer->id}}/update-profile">Edit</a></p>
+                                <br>
+                                <p>{{$customer->first_name}} {{$customer->middle_name }} {{$customer->last_name}}</p>
+                                <p>{{$customer->email}}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col s12 m6 l3">
-                        <p class="text-bold">Email Address</p>
-                        <p>{{$customer->email}}</p>
+
+                    <div class="col s12 m4 l4">
+                        <div class="card"style="min-height:140px">
+                            <div class="card-content">
+                                <p class="text-bold">Default Billing Address <span class="grey-text">|</span> <a href="/customer/{{$customer->id}}/address">Edit Address</a></p>
+                                <br>
+                                <p>{{$billing_address->first()->full_name}}</p>
+                                <p style="text-transform: lowercase">
+                                    {{$billing_address->first()->street}} {{$billing_address->first()->city_municipality_description}},{{$billing_address->first()->province_description}}
+                                </p>
+                                <p>{{$billing_address->first()->mobile_number}}</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col s12 m6 l3">
-                        <p class="text-bold">Mobile number</p>
-                        <p>{{$customer->phone_number}}</p>
-                    </div>
-                    <div class="col s12 m6 l3">
-                        <p class="text-bold">Address</p>
-                        <p>{{$customer->address}}</p>
-                    </div>
-                    <div class="col s12 m4 l4 mt-2">
-                        <a href="/customer/profile/{{$customer->id}}/update-profile" class="btn blue btn-large ">Edit Profile</a>
-                        <a href="#" class="btn blue btn-large ">Change Password</a>
+                    <div class="col s12 m4 l4">
+                        <div class="card"style="min-height:140px">
+                            <div class="card-content">
+                                <p class="text-bold">Default Shipping address</p>
+                                <br>
+                                <p>{{$shipping_address->first()->full_name}}</p>
+                                <p style="text-transform: lowercase">
+                                    {{$billing_address->first()->street}} {{$billing_address->first()->city_municipality_description}},{{$billing_address->first()->province_description}}
+                                </p>
+                                <p>{{$shipping_address->first()->mobile_number}}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

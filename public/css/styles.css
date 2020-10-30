@@ -151,12 +151,13 @@ select:focus {
     font-weight: bold;
 }
 .dropdown-content {
-    top: 66px!important;
-    
+    position: absolute;
+    color: white;
+    top: 40px!important;   
 }
 .dropdown-content li>a, .dropdown-content li>span {
     font-size: 16px;
-    color: #F58635!important;
+    color: #F58635;
     display: block;
     line-height: 22px;
     padding: 14px 16px;
@@ -273,3 +274,12 @@ select:focus {
 .tabs .indicator {
     background-color: #F58635 !important;
 } /*Color of underline*/
+
+/* radio button color */
+.with-gap[type="radio"]:checked+span:after{
+    background-color: #ff9800;
+    border-color: #ff9800;
+ } 
+ .with-gap[type="radio"]:checked+span:before{
+    border-color: #ff9800;
+  }

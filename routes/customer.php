@@ -1,10 +1,4 @@
 <?php
 
-Route::get('/', function () {
-    $users[] = Auth::user();
-    $users[] = Auth::guard()->user();
-    $users[] = Auth::guard('customer')->user();
-    //dd($users);
-    return view('checkout');
-})->name('home');
+Route::get('/', 'Customer/HomeController@index')->name('home');
 
