@@ -34,7 +34,7 @@ class DashboardController extends Controller
             $orders = number_format(($order = $orders / 1000000000),1) . 'B'; 
         }
     
-        $sale = DB::table('customers')->latest()->join('orders','orders.id','=','customers.id')->join('products','products.product_id','=','orders.product_id')->sum('orders.total');
+        $sale = DB::table('customers')->join('orders','orders.id','=','customers.id')->join('products','products.product_id','=','orders.product_id')->sum('orders.total');
         $sales = $sale;
         if($sales <= 999){
             $sales = $sales;
@@ -69,7 +69,7 @@ class DashboardController extends Controller
         elseif($customers < 9999999999){
             $customers = number_format(($customer = $customers / 1000000000),1) . 'B'; 
         }
-        $data = DB::table('customers')->latest()->join('orders','orders.id','=','customers.id')->join('products','products.product_id','=','orders.product_id')->selectRaw('sum(orders.total) as sum, cast(orders.created_at as date) as created_at')->pluck('sum','created_at');
+        $data = DB::table('customers')->join('orders','orders.id','=','customers.id')->join('products','products.product_id','=','orders.product_id')->selectRaw('sum(orders.total) as sum, cast(orders.created_at as date) as created_at')->groupBy('created_at')->pluck('sum','created_at');
         
         
         
@@ -77,7 +77,7 @@ class DashboardController extends Controller
         $chart->labels($data->keys());
         $chart->dataset('Daily Sales', 'bar', $data->values())->backgroundcolor('green');
         
-        $latest_order = DB::table('customers')->latest()->join('orders','orders.id','=','customers.id')->join('products','products.product_id','=','orders.product_id')->groupBy('receipt')->paginate(5);
+        $latest_order = DB::table('customers')->orderBy('orders.created_at','DESC')->join('orders','orders.id','=','customers.id')->join('products','products.product_id','=','orders.product_id')->groupBy('receipt')->paginate(5);
         return view('admin.home',compact('chart'),['latest_order'=>$latest_order,'orders'=>$orders,'sales'=>$sales,'customers'=>$customers]);
     }
 }

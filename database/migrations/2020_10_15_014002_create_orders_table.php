@@ -21,6 +21,8 @@ class CreateOrdersTable extends Migration
             $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
             $table->integer('product_quantity');
             $table->integer('total');
+            $table->integer('receipt');
+            $table->integer('shipping_fee');
             $table->string('status');
             $table->timestamps();
         });

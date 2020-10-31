@@ -19,9 +19,9 @@ class CreateProductsTable extends Migration
             $table->string('product_code');
             $table->string('product_description');
             $table->string('product_price');
-            $table->integer('product_height');
-            $table->integer('product_width');
-            $table->integer('product_weight');
+            $table->float('product_height');
+            $table->float('product_width');
+            $table->float('product_weight');
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')->references('category_id')->on('categories')->onDelete('set null');
             $table->integer('manufacturer_id')->unsigned()->nullable();

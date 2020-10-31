@@ -44,18 +44,19 @@
                     <div class="card-content">
                         <div class="row">
                             <div class="col s12">
-                                <p><i class="material-icons left orange-text">location_on</i>{{$customer->address}}</p>
+                                <p style="text-transform:lowercase"><i class="material-icons left orange-text">location_on</i>{{$address->first()->street}} {{$address->first()->barangay_description}} {{$address->first()->city_municipality_description}} {{$address->first()->province_description}}</p>
                             </div>
                             <div class="col s12">
-                                <p><i class="material-icons left orange-text">call</i>{{$customer->phone_number}}</p>
+                                <p><i class="material-icons left orange-text">call</i>{{$address->first()->mobile_number}}</p>
                             </div>
                             <div class="col s12">
                                 <p><i class="material-icons left orange-text">email</i>{{$customer->email}}</p>
                             </div>
 
                             <form action="/customer/{{$customer->id}}/checkout/place-order" method="post">
-                            @csrf
+                                @csrf
                                 <div class="col s12">    
+                                    <input type="hidden" name="shipping_fee"value="{{$shipping_fee}}">
                                     <div class="input-field">
                                         <select name="payment_method"class="browser-default"id="payment_method">
                                             <option value="1"selected>Cash On Delivery</option>
@@ -86,16 +87,26 @@
                                                             $total = $total + $cart->product_price * $cart->product_quantity
                                                         @endphp
                                                     @endforeach
-                                                    {{$total}}
+                                                    P{{$total}}
                                                 </p>
                                             </div>
                                             <div class="col s12">
                                                 <p class="left"style="font-weight:bold">Shipping</p>
-                                                <p class="right orange-text"style="font-weight:bold">P40</p>
+                                                <p class="right orange-text"style="font-weight:bold">P{{$shipping_fee}}</p>
                                             </div>
                                             <div class="col s12">
                                                 <p class="left"style="font-weight:bold">Total</p>
-                                                <p class="right orange-text"style="font-weight:bold">P1640</p>
+                                                <p class="right orange-text"style="font-weight:bold">
+                                                    @php
+                                                        $total = 0
+                                                    @endphp
+                                                    @foreach($carts as $cart) 
+                                                        @php
+                                                            $total = $total + $cart->product_price * $cart->product_quantity
+                                                        @endphp
+                                                    @endforeach
+                                                    P{{$total + $shipping_fee}}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>

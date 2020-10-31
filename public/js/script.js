@@ -92,5 +92,6 @@ $(document).ready(function(){
       format: 'yyyy-mm-dd'
     });
     $('.tooltipped').tooltip();
+    $('.collapsible').collapsible();
 
 });

@@ -48,7 +48,7 @@
                                 <br>
                                 <p>{{$shipping_address->first()->full_name}}</p>
                                 <p style="text-transform: lowercase">
-                                    {{$billing_address->first()->street}} {{$billing_address->first()->city_municipality_description}},{{$billing_address->first()->province_description}}
+                                    {{$shipping_address->first()->street}} {{$shipping_address->first()->city_municipality_description}},{{$shipping_address->first()->province_description}}
                                 </p>
                                 <p>{{$shipping_address->first()->mobile_number}}</p>
                             </div>

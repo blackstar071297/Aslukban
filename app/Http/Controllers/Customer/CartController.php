@@ -10,7 +10,7 @@ use Redirect;
 use Auth;
 use App\Customer;
 use App\Images;
-
+use App\Address;
 use Illuminate\Support\Facades\DB;
 class CartController extends Controller
 {
@@ -23,7 +23,6 @@ class CartController extends Controller
             ]);
             if($validator->fails()){
                 return redirect::back()->withErrors($validator)->withInput();
-               
             }else{
                 $cart = DB::table('cart')->where('product_id',$request->get('product_id'))->where('id',$request->get('customer_id'))->get();
                 if(count($cart) == 0){
@@ -49,6 +48,7 @@ class CartController extends Controller
     public function showCart($id){
         if(Auth::guard('customer')->user()->id == $id){
             $images = Images::all();
+            
             $cart = DB::table('cart')->join('customers','customers.id','=','cart.id')
             ->join('products','products.product_id','=','cart.product_id')->where('customers.id','=',$id)->get();
             return view('customer.cart',['carts'=>$cart,'images'=>$images,'id'=>$id]);

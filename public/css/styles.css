@@ -283,3 +283,8 @@ select:focus {
  .with-gap[type="radio"]:checked+span:before{
     border-color: #ff9800;
   }
+
+[type="checkbox"]:checked+span:not(.lever):before {
+    border-right: 2px solid #F58635;
+    border-bottom: 2px solid #F58635;
+}

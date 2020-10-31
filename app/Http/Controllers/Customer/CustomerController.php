@@ -17,8 +17,8 @@ class CustomerController extends Controller
     public function profile($id){
         if(Auth::guard('customer')->user()->id == $id){
             $customer = Customer::findOrFail($id);
-            $billing = Address::where('customer_id',$id)->where('billing',1)->join('philippine_provinces','philippine_provinces.province_code','=','address.province_code')->join('philippine_cities','philippine_cities.city_municipality_code','=','address.city_municipality_code')->join('philippine_barangays','philippine_barangays.barangay_code','=','address.baranggay_code')->get();
-            $shipping = Address::where('customer_id',$id)->where('shipping',1)->join('philippine_provinces','philippine_provinces.province_code','=','address.province_code')->join('philippine_cities','philippine_cities.city_municipality_code','=','address.city_municipality_code')->join('philippine_barangays','philippine_barangays.barangay_code','=','address.baranggay_code')->get();
+            $billing = Address::where('customer_id',$id)->where('billing',true)->join('philippine_provinces','philippine_provinces.province_code','=','address.province_code')->join('philippine_cities','philippine_cities.city_municipality_code','=','address.city_municipality_code')->join('philippine_barangays','philippine_barangays.barangay_code','=','address.baranggay_code')->get();
+            $shipping = Address::where('customer_id',$id)->where('shipping',true)->join('philippine_provinces','philippine_provinces.province_code','=','address.province_code')->join('philippine_cities','philippine_cities.city_municipality_code','=','address.city_municipality_code')->join('philippine_barangays','philippine_barangays.barangay_code','=','address.baranggay_code')->get();
             return view('customer.profile',['customer'=>$customer,'billing_address'=>$billing,'shipping_address'=>$shipping]);
         }else{
             abort(404);

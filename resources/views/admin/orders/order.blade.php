@@ -58,7 +58,7 @@
                                                     @endswitch
                                                 </td>
                                                 <td>
-                                                    {{ App\Order::where('receipt',$receipt)->sum('total')}} 
+                                                   {{App\Order::where('receipt',$customer->first()->receipt)->sum('total') + $customer->first()->shipping_fee}}
                                                 </td>
                                                 <td>
                                                     

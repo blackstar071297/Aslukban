@@ -22,6 +22,7 @@ Route::get('city','Customer\AddressController@getCity');
 Route::get('barangay','Customer\AddressController@getBarangay');
 
 Route::group(['prefix' => 'customer'], function () { 
+  
   Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('customer.login');
   Route::post('/login', 'CustomerAuth\LoginController@login');
   Route::post('/logout', 'CustomerAuth\LoginController@logout')->name('customer.logout');
@@ -49,6 +50,9 @@ Route::group(['prefix' => 'customer'], function () {
   Route::get('{id}/address/', 'Customer\AddressController@showAddress')->middleware('auth:customer');
   Route::get('{id}/address/new-address/', 'Customer\AddressController@showNewAddress')->middleware('auth:customer');
   Route::post('{id}/address/new-address/', 'Customer\AddressController@newAddress')->middleware('auth:customer');
+  Route::get('{id}/address/{address_id}', 'Customer\AddressController@showUpdateAddress')->middleware('auth:customer');
+  Route::post('{id}/address/{address_id}', 'Customer\AddressController@updateAddress')->middleware('auth:customer');
+
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -91,11 +95,12 @@ Route::group(['prefix' => 'admin'], function () {
 
   Route::get('/employees','Admin\EmployeeController@index')->middleware('auth:admin');
   Route::post('/employees/update-status/{id}','Admin\EmployeeController@changeStatus')->middleware('auth:admin');
-  Route::get('/employees/{id}','Admin\EmployeeController@showEmployee')->middleware('admin');
-  Route::post('/employees/{id}','Admin\EmployeeController@updateEmployee')->middleware('admin');
+  Route::get('/employees/{id}','Admin\EmployeeController@showEmployee')->middleware('auth:admin');
+  Route::post('/employees/{id}','Admin\EmployeeController@updateEmployee')->middleware('auth:admin');
   Route::get('/new-employee','Admin\EmployeeController@showRegister');
   Route::post('/new-employee','Admin\EmployeeController@register');
 
- 
+  Route::get('/shipping','Admin\ShippingController@index')->middleware('auth:admin');
+  Route::post('/shipping','Admin\ShippingController@store')->middleware('auth:admin');
 });
 

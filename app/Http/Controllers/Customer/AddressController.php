@@ -61,8 +61,8 @@ class AddressController extends Controller
                 return redirect::back()->withErrors($validator)->withInput();
             }else{
                 $address = new Address();
-                $DShipping = Address::where('shipping',true)->get();
-                $DShipping = Address::where('billing',true)->get();
+                $DShipping = Address::where('shipping',true)->where('customer_id',$id)->get();
+                $DShipping = Address::where('billing',true)->where('customer_id',$id)->get();
                 
                 if(count($DShipping) > 0){
                     $address->shipping = false;
@@ -88,4 +88,63 @@ class AddressController extends Controller
         }
        
     }
+    public function showUpdateAddress(request $request,$id,$address_id){
+        if(Auth::guard('customer')->user()->id == $id){
+            $address = Address::join('philippine_barangays','philippine_barangays.barangay_code','=','address.baranggay_code')
+            ->join('philippine_cities','philippine_cities.city_municipality_code','=','address.city_municipality_code')
+            ->join('philippine_provinces','philippine_provinces.province_code','=','address.province_code')
+            ->where('address.address_id',$address_id)->get();
+
+            $provinces = Provinces::all()->sortBy('province_description');
+            $cities = City::all()->sortBy('city_municipality_description');
+            $barangay = Barangay::all()->sortBy('barangay_description');
+
+            return view('customer.update-address',['provinces'=>$provinces,'address'=>$address,'cities'=>$cities,'barangays'=>$barangay]);
+        }else{
+            abort(404);
+        }
+    }
+    public function updateAddress(request $request,$id,$address_id){
+        if(Auth::guard('customer')->user()->id == $id){
+            $validator = Validator::make($request->all(),[
+                'full_name'=>'required',
+                'mobile_number'=>'required|max:13',
+                'label'=>'required',
+                'street'=>'required',
+                'provinces'=>'required',
+                'city'=>'required',
+                'barangay'=>'required',
+            ]);
+            if($validator->fails()){
+                return redirect::back()->withErrors($validator);
+            }else{
+                $address = Address::findOrFail($address_id);
+                $address->full_name = $request->get('full_name');
+                $address->mobile_number = $request->get('mobile_number');
+                $address->label = $request->get('label');
+                $address->street = $request->get('street');
+                $address->province_code = $request->get('provinces');
+                $address->city_municipality_code = $request->get('city');
+                $address->baranggay_code = $request->get('barangay');
+                if(isset($request->default_shipping)){
+                    $old_shipping = Address::where('customer_id',$id)->where('shipping',1)->update(['shipping'=>false]);
+
+
+                    $address->shipping = true;
+                }
+                if(isset($request->default_billing)){
+                    $old_shipping = Address::where('customer_id',$id)->where('billing',1)->update(['billing'=>false]);
+                    $address->billing = true;
+                }
+                
+                $address->save();
+                return redirect::back()->with('success','Update Successful');
+
+            }
+            
+        }else{
+            abort(404);
+        }
+    }
+    
 }

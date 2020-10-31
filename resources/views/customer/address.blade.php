@@ -58,7 +58,7 @@
                                             @break
                                     @endswitch
                                 </td>
-                                <td><a href="">Edit</a></td>
+                                <td><a href="/customer/{{Auth::guard('customer')->user()->id}}/address/{{$address->address_id}}">Edit</a></td>
                             </tr>
                         @endforeach
                     </tbody>
