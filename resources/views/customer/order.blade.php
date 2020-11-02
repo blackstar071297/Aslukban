@@ -12,10 +12,9 @@
             </ul>
         </div>
         <div class="col s12">
-            <div id="all_tab" class="col s12 white">
-                
+            <div id="all_tab" class="col s12 white">   
                 <div class="row">
-                    @foreach($customers->groupBy('receipt') as $receipt => $customer)
+                    <!-- @foreach($customers->groupBy('receipt') as $receipt => $customer)
                         <div class="col s12">
                             <div class="card">
                                 <div class="card-content">
@@ -85,7 +84,44 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach -->
+                    <div class="col s12">
+                        <div class="card">
+                            <div class="card-content">
+                                <div class="table-wrapper">
+                                    <table class="centered">
+                                        <thead>
+                                            <tr>
+                                                <th>Receipt #</th>
+                                                <th>Number of products</th>
+                                                <th>Status</th>
+                                                <th>Total</th>
+                                                <th>Date placed</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach($customers->groupBy('receipt') as $receipt => $customer)
+                                                <tr>
+                                                    <td>{{$receipt}}</td>
+                                                    <td>{{count($customer)}}</td>
+                                                    <td>
+                                                        @php
+                                                            $history = App\OrderHistory::where('order_receipt',$receipt)->orderBy('created_at','DESC')->get()
+                                                        @endphp
+                                                        {{$history->first()->order_status}}
+                                                    </td>
+                                                    <td>{{$customer->sum('total')}}</td>
+                                                    <td>{{ Carbon\Carbon::parse($customer->first()->created_at)->format('m/d/yy') }}</td>
+                                                    <td><a href="/customer/profile/{{auth::guard('customer')->user()->id}}/order/{{$receipt}}"class="btn blue"><i class="material-icons">remove_red_eye</i></a></td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col s12  center">
                     <a href="/search/all-products"class="btn blue">Continue shopping</a>

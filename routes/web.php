@@ -38,7 +38,10 @@ Route::group(['prefix' => 'customer'], function () {
   Route::get('/profile/{id}', 'Customer\CustomerController@profile')->middleware('auth:customer');
   Route::get('/profile/{id}/update-profile', 'Customer\CustomerController@showUpdateProfile')->middleware('auth:customer');
   Route::post('/profile/{id}/update-profile', 'Customer\CustomerController@updateProfile')->middleware('auth:customer');
+
   Route::get('/profile/{id}/order','Customer\CustomerController@showOrder');
+  Route::get('/profile/{id}/order/{receipt_id}','Customer\CustomerController@showCustomerOrder');
+
   Route::post('product/{id}/add-to-cart/','Customer\CartController@addToCart')->middleware('auth:customer');
   Route::get('{id}/cart','Customer\CartController@showCart')->middleware('auth:customer');
   Route::post('{id}/cart/update','Customer\CartController@updateCart')->middleware('auth:customer');
@@ -92,6 +95,8 @@ Route::group(['prefix' => 'admin'], function () {
 
   Route::get('/orders','Admin\OrderController@showCustomersOrder')->middleware('auth:admin');
   Route::get('/orders/{receipt_id}','Admin\OrderController@showOrder')->middleware('auth:admin');
+  Route::post('/orders/{receipt_id}','Admin\OrderController@addOrderHistory')->middleware('auth:admin');
+  Route::get('/orders/{receipt_id}/delete/{history_id}','Admin\OrderController@deleteOrderHistory')->middleware('auth:admin');
 
   Route::get('/employees','Admin\EmployeeController@index')->middleware('auth:admin');
   Route::post('/employees/update-status/{id}','Admin\EmployeeController@changeStatus')->middleware('auth:admin');

@@ -1,9 +1,9 @@
-@extends('admin.layout.auth')
+@extends('layouts.layout')
 
 @section('content')
 <div class="container"style="min-height:65vh">
     <div class="row">
-        <div class="col s9 offset-l3">
+        <div class="col s12">
             <div class="row">
                 <div class="col l4">
                     <div class="card">
@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <div class="col s9 offset-l3">
+        <div class="col s12">
             <div class="card">
                 <div class="card-content blue white-text">
                     <h5> Receipt #: {{$order->first()->receipt}} </h5>
@@ -151,19 +151,18 @@
                 </div>
             </div>
         </div>
-        <div class="col s9 offset-l3">
+        <div class="col s12">
             <div class="card">
                 <div class="card-content blue white-text">
                     <h5>Order History</h5>
                 </div>
                 <div class="card-content">
-                    <table>
+                    <table class="centered">
                         <thead>
                             <tr>
                                 <th>Date Added</th>
                                 <th>Comment</th>
                                 <th>Status</th>
-                                <th></th>
                             </tr>
                         </thead>
 
@@ -172,38 +171,12 @@
                                 <tr>
                                     <td>{{ Carbon\Carbon::parse($history->created_at)->format('d-m-Y ') }}</td>
                                     <td>{{$history->order_comment}}</td>
-                                    <td>{{$history->order_status}}</td>
-                                    <td><a href="/admin/orders/{{$order->receipt}}/delete/{{$history->order_histroy_id}}"><i class="material-icons left red-text">delete</i></a></td>
+                                    <td>{{$history->order_status}}</td>   
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <br>
-                    
-                    <form action="/admin/orders/{{$order->receipt}}"method="post">
-                        @csrf
-                        <div class="input-field">
-                            <input type="hidden" name="customer_id"value="{{$order->id}}">
-                        </div>
-                        <div class="input-field">
-                            <select name="order_status" id="order_status">
-                                <option value="Pending">Pending</option>
-                                <option value="Paid">Paid</option>
-                                <option value="Processing">Processing</option>
-                                <option value="Shipping">Shipping</option>
-                                <option value="Complete">Complete</option>
-                            </select>
-                            <label for="order_status">Status</label>
-                        </div>
-                        <div class="input-field">
-                            <textarea name="comment" id="comment" cols="30" rows="10"class="materialize-textarea"></textarea>
-                            <label for="comment">Comment</label>
-                        </div>
-                        <div class="mb-2">
-                            <button type="submit"class="btn blue right"><i class="material-icons left">add_circle_outline</i>Add history</button>
-                        </div>
-                        
-                    </form>
+                       
                 </div>
             </div>
         </div>

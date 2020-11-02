@@ -9,18 +9,23 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Item Name</th>
-                                <th>Item Price</th>
+                                <th>City</th>
+                                <th>Province</th>
+                                <th>Rate</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>Alvin</td>
-                                <td>Eclair</td>
-                                <td>$0.87</td>
-                            </tr>
+                            @foreach($rate_list as $rate)
+                                <tr>
+                                    @php
+                                        $province = App\Provinces::where('province_code',$rate->province_code)->get()
+                                    @endphp
+                                    <td style="text-transform:lowercase">{{$rate->city_municipality_description}}</td>
+                                    <td style="text-transform:lowercase">{{$province->first()->province_description}}</td>
+                                    <td>{{$rate->destination}}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

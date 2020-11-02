@@ -22,6 +22,8 @@ class CreateOrdersTable extends Migration
             $table->integer('product_quantity');
             $table->integer('total');
             $table->integer('receipt');
+            $table->string('billing_address');
+            $table->string('shipping_address');
             $table->integer('shipping_fee');
             $table->string('status');
             $table->timestamps();

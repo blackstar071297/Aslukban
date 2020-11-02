@@ -4,10 +4,9 @@
 <div class="container">
   <div class="row">
     <div class="col s12 center mt-1">
-    
         <p class="alert green-text">{{session('message')}}</p>
         @if(!empty(session('success')))
-          <p class="alert green-text">{{session('success')}}</p>
+          <h3 class="alert green-text">{{session('success')}}</h3>
         @endif
     </div>
     <div class="col s12 mb-1 banner-slider">

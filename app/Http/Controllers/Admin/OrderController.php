@@ -13,6 +13,7 @@ use App\Category;
 use App\Order;
 use App\Payment;
 use App\Customer;
+use App\OrderHistory;
 use Hash;
 use Redirect;
 use App\address;
@@ -24,6 +25,7 @@ class OrderController extends Controller
         $receipt_id = '';
         $customer_name = '';
         $created_at = '';
+        
         if(!empty($request->get('receipt_id'))){
             $receipt_id = $request->get('receipt_id');
         }
@@ -49,9 +51,34 @@ class OrderController extends Controller
         return view('admin.orders.order',['customers'=>$customer]);
     }
     public function showOrder($receipt_id){
+        $order_history = OrderHistory::where('order_receipt',$receipt_id)->orderBy('created_at','DESC')->get();
         $order = Customer::join('orders','orders.id','=','customers.id')
         ->join('products','products.product_id','=','orders.product_id')
         ->where('orders.receipt',$receipt_id)->get();
-        return view('admin.orders.show-order',['order'=>$order]);
+        return view('admin.orders.show-order',['order'=>$order,'history'=>$order_history]);
     }
+    public function addOrderHistory(request $request,$receipt_id){
+        $history = new OrderHistory();
+        $check = Order::where('receipt',$receipt_id)->get();
+        if($check->first()->id == $request->get('customer_id')){
+            $history->order_receipt = $receipt_id;
+            $history->order_status = $request->get('order_status');
+            if(empty($request->get('comment'))){
+                $history->order_comment = '';
+            }else{
+                $history->order_comment = $request->get('comment');
+            }
+            
+            $history->save();
+            return redirect::back()->with('success','Adding order history success');
+        }else{
+            abort(403);
+        }
+    }
+    public function deleteOrderHistory($receipt_id,$history_id){
+       $history = OrderHistory::where('order_receipt',$receipt_id)->where('order_histroy_id',$history_id)->delete();
+      
+       return redirect::back();
+    }
+
 }

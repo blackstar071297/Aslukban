@@ -13,9 +13,10 @@ use Illuminate\Support\MessageBag;
 class ShippingController extends Controller
 {
     public function index(){
+        $rates = Rate::join('philippine_cities','philippine_cities.city_municipality_code','=','shipping_rate.city_municipality_code')->join('lbc_shipping','lbc_shipping.lbc_shipping_id','=','shipping_rate.lbc_rate')->get();
         $provinces = Provinces::all()->sortBy('province_description');
         $rate = Lbc::all();
-        return view('admin.orders.shipping-rate',['provinces'=>$provinces,'rates'=>$rate]);
+        return view('admin.orders.shipping-rate',['provinces'=>$provinces,'rates'=>$rate,'rate_list'=>$rates]);
     }
     public function store(request $request){
         $validator = Validator::make($request->all(),[

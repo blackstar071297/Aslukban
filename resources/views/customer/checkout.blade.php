@@ -55,6 +55,10 @@
 
                             <form action="/customer/{{$customer->id}}/checkout/place-order" method="post">
                                 @csrf
+                                <div class="input-field">
+                                    <input type="hidden" name="shipping_address" value="{{$address->first()->street}} {{$address->first()->barangay_description}} {{$address->first()->city_municipality_description}} {{$address->first()->province_description}}">
+                                    <input type="hidden" name="billing_address" value="{{$billing->first()->street}} {{$billing->first()->barangay_description}} {{$billing->first()->city_municipality_description}} {{$billing->first()->province_description}}">
+                                </div>
                                 <div class="col s12">    
                                     <input type="hidden" name="shipping_fee"value="{{$shipping_fee}}">
                                     <div class="input-field">
@@ -117,7 +121,8 @@
                                     @endforeach
                                     <button class="btn blue w-100">Place order</button>
                                 </div>
-                            </form>     
+                            </form>
+                              
                         </div>
                     </div>
                 </div>
@@ -125,4 +130,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

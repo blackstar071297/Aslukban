@@ -39,9 +39,9 @@ class ProductController extends Controller
             'product_code' => 'required',
             'product_price' => 'required|integer',
             'product_description' => 'required',
-            'product_height' => 'required|integer',
-            'product_width' => 'required|integer',
-            'product_weight' => 'required|integer',
+            'product_height' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'product_width' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'product_weight' => 'required|regex:/^\d+(\.\d{1,2})?$/',
             'manufacturer' => 'required|integer',
             'category' => 'required|integer',
         ]);

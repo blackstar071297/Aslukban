@@ -8,6 +8,7 @@ use App\Customer;
 use App\Product;
 use App\Images;
 use App\Manufacturer;
+use App\OrderHistory;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Auth;
@@ -21,7 +22,7 @@ class CustomerController extends Controller
             $shipping = Address::where('customer_id',$id)->where('shipping',true)->join('philippine_provinces','philippine_provinces.province_code','=','address.province_code')->join('philippine_cities','philippine_cities.city_municipality_code','=','address.city_municipality_code')->join('philippine_barangays','philippine_barangays.barangay_code','=','address.baranggay_code')->get();
             return view('customer.profile',['customer'=>$customer,'billing_address'=>$billing,'shipping_address'=>$shipping]);
         }else{
-            abort(404);
+            abort(403);
         }
     }
     public function showOrder($id){
@@ -31,15 +32,22 @@ class CustomerController extends Controller
             $images = Images::all();
             return view('customer.order',['customers'=>$customer,'images'=>$images]);
         }else{
-            abort(404);
+            abort(403);
         }
+    }
+    public function showCustomerOrder($id,$receipt_id){
+        $order_history = OrderHistory::where('order_receipt',$receipt_id)->orderBy('created_at','DESC')->get();
+        $order = Customer::join('orders','orders.id','=','customers.id')
+        ->join('products','products.product_id','=','orders.product_id')
+        ->where('orders.receipt',$receipt_id)->get();
+        return view('customer.show-order',['order'=>$order,'history'=>$order_history]);
     }
     public function showUpdateProfile($id){
         if(Auth::guard('customer')->user()->id == $id){
             $customer = Customer::findOrFail($id);
             return view('customer.update-profile',['customer'=>$customer]);
         }else{
-            abort(404);
+            abort(403);
         }
     }
     public function updateProfile($id,request $request){

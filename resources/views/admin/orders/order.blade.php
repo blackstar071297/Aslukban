@@ -35,14 +35,10 @@
                                                 <td>{{$receipt}}</td>
                                                 <td>{{$customer->first()->first_name}}</td>
                                                 <td>
-                                                    @switch($customer->first()->status)
-                                                        @case('0')
-                                                            <p>Pending</p>
-                                                            @break
-                                                        @case('1')
-                                                            <p>Processing</p>
-                                                            @break
-                                                    @endswitch
+                                                    @php
+                                                        $history = App\OrderHistory::where('order_receipt',$receipt)->orderBy('created_at','DESC')->get()
+                                                    @endphp
+                                                    {{$history->first()->order_status}}
                                                 </td>
                                                 <td>{{ Carbon\Carbon::parse($customer->first()->created_at)->format('m/d/yy') }}</td>
                                                 <td>
@@ -58,7 +54,7 @@
                                                     @endswitch
                                                 </td>
                                                 <td>
-                                                   {{App\Order::where('receipt',$customer->first()->receipt)->sum('total') + $customer->first()->shipping_fee}}
+                                                   {{App\Order::where('receipt',$customer->first()->receipt)->sum('total')}}
                                                 </td>
                                                 <td>
                                                     

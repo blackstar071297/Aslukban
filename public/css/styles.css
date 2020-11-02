@@ -288,3 +288,10 @@ select:focus {
     border-right: 2px solid #F58635;
     border-bottom: 2px solid #F58635;
 }
+
+/* customize textarea */
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #F58635;
+    -webkit-box-shadow: 0 1px 0 0 #F58635;
+    box-shadow: 0 1px 0 0 #F58635;
+}

@@ -51,7 +51,7 @@
                     </div>
                     <div class="input-field">
                     <i class="prefix fas fa-arrows-alt-v"></i>
-                        <input type="number"name="product_height"id="product_height"class="@error('product_height') is-invalid @enderror"value="{{ old('product_height') }}">
+                        <input type="number"name="product_height"id="product_height"class="@error('product_height') is-invalid @enderror"value="{{ old('product_height') }}"step="0.01">
                         <label for="product_height">Product height(cm)</label>
                         @error('product_height')
                             <span class="red-text">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="input-field">
                         <i class="prefix fas fa-arrows-alt-h"></i>
-                        <input type="number"name="product_width"id="product_width"class="@error('product_width') is-invalid @enderror"value="{{ old('product_width') }}">
+                        <input type="number"name="product_width"id="product_width"class="@error('product_width') is-invalid @enderror"value="{{ old('product_width') }}"step="0.01">
                         <label for="product_width">Product width(cm)</label>
                         @error('product_width')
                             <span class="red-text">
@@ -71,7 +71,7 @@
                     </div>
                     <div class="input-field">
                         <i class="prefix fas fa-weight-hanging"></i>
-                        <input type="number"name="product_weight"id="product_weight"class="@error('product_weight') is-invalid @enderror"value="{{ old('product_weight') }}">
+                        <input type="number"name="product_weight"id="product_weight"class="@error('product_weight') is-invalid @enderror"value="{{ old('product_weight') }}"step="0.01">
                         <label for="product_weight">Product weight(g)</label>
                         @error('product_weight')
                             <span class="red-text">
