@@ -76,7 +76,7 @@ class CheckoutController extends Controller
             $cart->delete();
             
         }
-        return redirect('/')->with('success','Your order is successfully place');
+        return redirect('/customer/profile/'.$id.'/order/'.$receipt)->with('success','Order success');
     }
     private function getShippingFee($address,$total_weight){
         $city_code = $address->first()->city_municipality_code;

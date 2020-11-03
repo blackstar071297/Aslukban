@@ -56,6 +56,14 @@ $(document).ready(function(){
       
     });
 
+    $('#payment_method').change(function(e){
+      
+      if($(this).val() == 0){
+        console.log($(this).val());
+        $('#gcash').modal('open'); 
+      }
+    });
+
     //For cart page
     $('#allCheckbox').click(function(){
       if($(this).prop('checked')==true){
@@ -93,5 +101,5 @@ $(document).ready(function(){
     });
     $('.tooltipped').tooltip();
     $('.collapsible').collapsible();
-
+    $('.modal').modal();
 });
