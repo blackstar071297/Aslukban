@@ -4,6 +4,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 class PhilippineBarangaysTableSeeder extends Seeder
 {
+    
     /**
      * Run the database seeds.
      *
@@ -11,16 +12,19 @@ class PhilippineBarangaysTableSeeder extends Seeder
      */
     public function run()
     {
+        
         if(!DB::table('philippine_barangays')->count()) {
-            
+            ini_set('memory_limit', '-1');
             $sql = file_get_contents(__DIR__ . '/sql/philippine_barangays.sql');
-            if (! str_contains($sql, ['DELETE', 'TRUNCATE'])) {
-                throw new Exception('Invalid sql file. This will not empty the tables first.');
-            }
-            $statements = array_filter(array_map('trim', explode(';', $sql)));
-            foreach ($statements as $stmt) {
-                DB::statement($stmt);
-            }
+            
+            $sql = file_get_contents('C:\Users\Web developer PC\Desktop\ASLukbanWebsite\database\seeds\sql/philippine_barangays.sql');
+            $array = explode(';',$sql);
+            foreach(array_chunk($array,1000) as $lists){
+                foreach($lists as $list){
+                    DB::unprepared(DB::raw($list.';'));
+                }
+            }           
+            
         }
     }
 }
