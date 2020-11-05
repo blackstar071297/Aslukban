@@ -10,7 +10,7 @@ body{
     color: #F58635 !important;
 }
   /* label underline focus color */
-.input-field input[type=text]:focus,input[type=email]:focus,input[type=password]:focus{
+.input-field input[type=text]:focus,input[type=email]:focus,input[type=password]:focus,input[type=text]:focus,.input-field input[type=number]:focus,input[type=number]:focus{
     border-bottom: 1px solid #F58635 !important;
     box-shadow: 0 1px 0 0 #F58635 !important;
 }
@@ -294,4 +294,17 @@ textarea.materialize-textarea:focus:not([readonly]) {
     border-bottom: 1px solid #F58635;
     -webkit-box-shadow: 0 1px 0 0 #F58635;
     box-shadow: 0 1px 0 0 #F58635;
+}
+
+/* number spinner */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: auto;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

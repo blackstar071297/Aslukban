@@ -62,6 +62,7 @@
                                 <div class="col s12">    
                                     <input type="hidden" name="shipping_fee"value="{{$shipping_fee}}">
                                     <div class="input-field">
+                                        <h6 class="text-bold orange-text">Payment method</h6>
                                         <select name="payment_method"class="browser-default"id="payment_method">
                                             <option value="1"selected>Cash On Delivery</option>
                                         </select>
@@ -80,7 +81,7 @@
                                                     @endphp
                                                     @foreach($carts as $cart) 
                                                         @php
-                                                            $total = $total + $cart->product_price * $cart->product_quantity
+                                                            $total = $total + $cart->cart_price * $cart->product_quantity
                                                         @endphp
                                                     @endforeach
                                                     P{{$total}}
