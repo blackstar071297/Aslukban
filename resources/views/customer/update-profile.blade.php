@@ -19,14 +19,6 @@
                     <label for="last_name">Last name</label>
                 </div>
                 <div class="input-field">
-                    <input type="text" name="address"value="{{$customer->address}}">
-                    <label for="address">Address</label>
-                </div>
-                <div class="input-field">
-                    <input type="text" name="phone_number"value="{{$customer->phone_number}}">
-                    <label for="phone_number">Phone Number</label>
-                </div>
-                <div class="input-field">
                     <input type="email" name="email"value="{{$customer->email}}">
                     <label for="email">Email</label>
                 </div>

@@ -33,11 +33,14 @@
                             <div class="card-content">
                                 <p class="text-bold">Default Billing Address <span class="grey-text">|</span> <a href="/customer/{{$customer->id}}/address">Edit Address</a></p>
                                 <br>
-                                <p>{{$billing_address->first()->full_name}}</p>
-                                <p style="text-transform: lowercase">
-                                    {{$billing_address->first()->street}} {{$billing_address->first()->city_municipality_description}},{{$billing_address->first()->province_description}}
-                                </p>
-                                <p>{{$billing_address->first()->mobile_number}}</p>
+                                @if(count($billing_address) > 0)
+                                    <p>{{$billing_address->first()->full_name}}</p>
+                                    <p style="text-transform: lowercase">
+                                        {{$billing_address->first()->street}} {{$billing_address->first()->city_municipality_description}},{{$billing_address->first()->province_description}}
+                                    </p>
+                                    <p>{{$billing_address->first()->mobile_number}}</p>
+                                @endif
+
                             </div>
                         </div>
                     </div>
@@ -46,11 +49,14 @@
                             <div class="card-content">
                                 <p class="text-bold">Default Shipping address</p>
                                 <br>
-                                <p>{{$shipping_address->first()->full_name}}</p>
-                                <p style="text-transform: lowercase">
-                                    {{$shipping_address->first()->street}} {{$shipping_address->first()->city_municipality_description}},{{$shipping_address->first()->province_description}}
-                                </p>
-                                <p>{{$shipping_address->first()->mobile_number}}</p>
+                                @if(count($shipping_address) > 0)
+                                    <p>{{$shipping_address->first()->full_name}}</p>
+                                    <p style="text-transform: lowercase">
+                                        {{$shipping_address->first()->street}} {{$shipping_address->first()->city_municipality_description}},{{$shipping_address->first()->province_description}}
+                                    </p>
+                                    <p>{{$shipping_address->first()->mobile_number}}</p>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>

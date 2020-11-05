@@ -64,7 +64,6 @@ class CustomerController extends Controller
                 $customer->first_name = $request->get('first_name');
                 $customer->middle_name = $request->get('middle_name');
                 $customer->last_name = $request->get('last_name');
-                $customer->phone_number = $request->get('phone_number');
                 $customer->email = $request->get('email');
                 $customer->save();
                 return redirect('/customer/profile/'.$id)->with('success','Update success');

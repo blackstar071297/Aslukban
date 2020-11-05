@@ -12,6 +12,7 @@ class HomeController extends Controller
         $users[] = Auth::guard()->user();
         $users[] = Auth::guard('customer')->user();
         //dd($users);
+       
         return view('home');
     }
 }
