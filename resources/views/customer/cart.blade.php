@@ -73,7 +73,7 @@
                         </td>
                         <td class="orange-text">
                             @php
-                                echo $cart->cart_price * $cart->product_quantity
+                                echo $cart->product_price * $cart->product_quantity
                             @endphp
                         </td>
                         <td>

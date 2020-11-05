@@ -56,6 +56,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col s12">
                     <div class="card">
                         <div class="card-content blue lighten-1 white-text">
@@ -85,10 +86,14 @@
                                                 <td>{{$receipt}}</td>
                                                 <td>{{$order->first()->first_name}}</td>
                                                 <td>
-                                                    @php
-                                                        $history = App\OrderHistory::where('order_receipt',$receipt)->orderBy('created_at','DESC')->get()
-                                                    @endphp
-                                                    {{$history->first()->order_status}}
+                                                    @switch($order->first()->status)
+                                                        @case('0')
+                                                            <p>Pending</p>
+                                                            @break
+                                                        @case('1')
+                                                            <p>Processing</p>
+                                                            @break
+                                                    @endswitch
                                                 </td>
                                                 <td>{{ Carbon\Carbon::parse($order->first()->created_at)->format('m/d/yy') }}</td>
                                                 <td>
@@ -107,6 +112,7 @@
                                                     {{ App\Order::where('receipt',$receipt)->sum('total')}} 
                                                 </td>
                                                 <td>
+                                                    
                                                     <a href="/admin/orders/{{$receipt}}"class="btn blue"><i class="material-icons">remove_red_eye</i></a>
                                                 </td>
                                             </tr>

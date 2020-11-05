@@ -17,15 +17,21 @@
                         <div class="col s12 m12 l7">
                             <div class="row">
                                 <div class="col s12 mt-1">
-                                    <p class="flow-text product-name">{{$product->first()->product_name}}</p>
-                                    <p id="product_price_txt"class="flow-text product-price"style="font-size:3rem">P{{$product->first()->product_price}}</p>
+                                    <p class="flow-text product-name">{{$product->product_name}}</p>
+                                    <!-- <a href="#"class="yellow-text">
+                                        <i class="material-icons">star</i>
+                                        <i class="material-icons">star</i>
+                                        <i class="material-icons">star</i>
+                                        <i class="material-icons">star</i>
+                                        <i class="material-icons grey-text text-lighten-1">star</i>
+                                    </a> -->
+                                    <p class="flow-text product-price"style="font-size:3rem">P{{$product->product_price}}</p>
                                 </div>
-                                <form action="/customer/product/{{$product->first()->product_id}}/add-to-cart/" method="post">
+                                <form action="/customer/product/{{$product->product_id}}/add-to-cart/" method="post">
                                     @csrf
                                     <div class="no-display">
-                                        <input type="hidden" name="product_id"value="{{$product->first()->product_id}}">
+                                        <input type="hidden" name="product_id"value="{{$product->product_id}}">
                                         <input type="hidden" name="customer_id"@if(Auth::guard('customer')->guest())value=""@else value="{{ Auth::guard('customer')->user()->id }}"@endif >
-                                        <input type="hidden" id="product_price"name="product_price"value="{{$product->first()->product_price}}">
                                     </div>
                                     <div class="col s12">
                                         <div class="input-group input-number-group left">
@@ -42,19 +48,7 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div> 
-                                    <div class="col s12">
-                                        @php 
-                                            $options = App\OrderOption::where('product_id',$product->first()->product_id)->get()
-                                        @endphp
-                                        <select name="options_select" id="options_select">
-                                            <option value=""disabled selected>Choose options</option>
-                                            @foreach($options as $option)
-                                                <option value="{{$option->order_options_id}}">{{$option->option_name}}</option>
-                                            @endforeach
-                                        </select>
-
-                                    </div>    
+                                    </div>     
                                     <div class="col s12 m12 l6 mt-1">
                                         <button class="btn blue btn-large w-100">Add to cart</button>
                                     </div>        
@@ -78,7 +72,7 @@
                         </div>
                         <div class="col s12">
                             <span class="grey-text">Manufacturer</span>
-                            <a href="#">{{$product->first()->manufacturer_name}}</a>
+                            <a href="#">{{$manufacturer[0]->manufacturer_name}}</a>
                         </div>
                         <div class="col s12">
                             <span class="grey-text">Stock</span>
@@ -88,7 +82,7 @@
                     <div class="row">
                         <div class="col s12">
                             <p class="flow-text">Product Details</p>
-                            <p>{{$product->first()->product_description}}</p>
+                            <p>{{$product->product_description}}</p>
                         </div>
 
                     </div>
@@ -116,7 +110,4 @@
         </div>
     </div>
 </div>
-@push('scripts')
-    <script src="/js/options.js"></script>
-@endpush
 @endsection

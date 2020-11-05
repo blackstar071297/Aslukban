@@ -15,9 +15,9 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('order_id');
-            $table->integer('id')->unsigned();
+            $table->integer('id')->unsigned()->nullable();
             $table->foreign('id')->references('id')->on('customers')->onDelete('cascade');
-            $table->integer('product_id')->unsigned();
+            $table->integer('product_id')->unsigned()->nullable();
             $table->foreign('product_id')->references('product_id')->on('products')->onDelete('cascade');
             $table->integer('product_quantity');
             $table->integer('total');
@@ -26,7 +26,6 @@ class CreateOrdersTable extends Migration
             $table->string('shipping_address');
             $table->integer('shipping_fee');
             $table->string('status');
-            $table->integer('tracking_number')->nullable();
             $table->timestamps();
         });
     }

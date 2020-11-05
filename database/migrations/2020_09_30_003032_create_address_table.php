@@ -19,8 +19,8 @@ class CreateAddressTable extends Migration
             $table->string('mobile_number',13);
             $table->integer('label');
             $table->integer('province_code');
-            $table->integer('customer_id')->unsigned();
-            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
+            $table->integer('customer_id')->unsigned()->nullable();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('set null');
             $table->integer('city_municipality_code');
             $table->integer('baranggay_code');
             $table->string('street');

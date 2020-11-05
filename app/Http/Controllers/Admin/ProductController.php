@@ -10,7 +10,6 @@ use App\Product;
 use App\Images;
 use App\Manufacturer;
 use App\Category;
-use App\OrderOption;
 use Hash;
 use Redirect;
 use Illuminate\Support\Facades\DB;
@@ -62,21 +61,9 @@ class ProductController extends Controller
             $product->category_id = $request->get('category');
             $product->save();
             
-            if($request->has('option_name')){
-                
-                foreach($request->get('option_name') as $key => $option_name){
-                    if(!empty($request->get('option_name')[$key])){
-                        $option = new OrderOption();
-                        $option->product_id = $product->product_id;
-                        $option->option_name = $request->get('option_name')[$key];
-                        $option->option_price = $request->get('option_price')[$key];
-                        $option->save();
-                    }
-                    
-                }
-            }
             if($request->hasFile('product_images')){
-                             
+               
+                
                 foreach($request->file('product_images') as $key => $image):
                     $images = new Images();
                     $path = Storage::putFile('/images/products/', $request->file('product_images')[$key]);
@@ -95,19 +82,18 @@ class ProductController extends Controller
         $images = Images::all();
         $manufacturer = Manufacturer::all();
         $category = Category::all();
-        $options = OrderOption::where('product_id',$id)->get();
-        return view('admin.products.show-product',['product'=>$products,'manufacturers'=>$manufacturer,'images'=>$images,'categories'=>$category,'options'=>$options]);
+        return view('admin.products.show-product',['product'=>$products,'manufacturers'=>$manufacturer,'images'=>$images,'categories'=>$category]);
 
     }
     public function update($id,request $request){
         $validator = Validator::make($request->all(),[
             'product_name' => 'required',
             'product_code' => 'required',
-            'product_price' => 'required|integer',
             'product_description' => 'required',
-            'product_height' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'product_width' => 'required|regex:/^\d+(\.\d{1,2})?$/',
-            'product_weight' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'product_price' => 'required|integer',
+            'product_height' => 'required|integer',
+            'product_width' => 'required|integer',
+            'product_weight' => 'required|integer',
             'manufacturer' => 'required|integer',
             'category' => 'required|integer',
         ]);
@@ -127,36 +113,6 @@ class ProductController extends Controller
                 $product->category_id = $request->get('category');
                 $product->save();
                 
-                if($request->has('option_name')){
-                
-                    foreach($request->get('option_name') as $key => $option_name){
-                        if(!empty($request->get('option_name')[$key])){
-                            $option = new OrderOption();
-                            $option->product_id = $product->product_id;
-                            $option->option_name = $request->get('option_name')[$key];
-                            $option->option_price = $request->get('option_price')[$key];
-                            $option->save();
-                        }
-                        
-                    }
-                }
-                if($request->has('options')){
-                    OrderOption::whereNotIn('order_options_id',$request->get('options'))->delete();
-                }
-                if($request->has('option_name')){
-                
-                    foreach($request->get('option_name') as $key => $option_name){
-                        if(!empty($request->get('option_name')[$key])){
-                            $option = new OrderOption();
-                            $option->product_id = $product->product_id;
-                            $option->option_name = $request->get('option_name')[$key];
-                            $option->option_price = $request->get('option_price')[$key];
-                            $option->save();
-                        }
-                        
-                    }
-                }
-
                 if($request->hasFile('product_images')){           
                     foreach($request->file('product_images') as $key => $image):  
                         $images = new Images();           

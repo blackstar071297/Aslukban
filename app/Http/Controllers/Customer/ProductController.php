@@ -10,12 +10,10 @@ use App\Images;
 use App\Category;
 use App\Manufacturer;
 use App\Cart;
-use App\OrderOption;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use Validator;
 use Redirect;
-use Response;
 class ProductController extends Controller
 {
     public function home(){
@@ -25,12 +23,10 @@ class ProductController extends Controller
         return view('home',['products'=>$products,'images'=>$images,'categories'=>$category]);
     }
     public function index($id){
-        $product = Product::findOrFail($id)
-        ->join('order_options','order_options.product_id','=','products.product_id')
-        ->join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->get();
-        
-        $images = Images::where('product_id',$id)->get();
-        return view('product',['product'=>$product,'images'=>$images]);
+        $product = Product::findOrFail($id);
+        $manufacturer = Manufacturer::where('manufacturer_id','=',$product->manufacturer_id)->get();
+        $images = Images::where('product_id','=',$product->product_id)->get();
+        return view('product',['product'=>$product,'manufacturer'=>$manufacturer,'images'=>$images]);
     }
     public function showAllProduct(){
         $products = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->join('categories','categories.category_id','=','products.category_id')->paginate(10);
@@ -45,11 +41,6 @@ class ProductController extends Controller
         $images = Images::all();
         return view('search',['products'=>$products,'manufacturers'=>$manufacturer,'images'=>$images,'q'=>$query]);
 
-    }
-
-    public function getOptionPrice(request $request){
-        $option_price = OrderOption::findOrFail($request->get('option'));
-        return Response::json($option_price->first()->option_price);
     }
 
 }

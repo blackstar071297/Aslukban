@@ -67,7 +67,6 @@
             <div class="no-display">
                 <input type="hidden" name="product_id"value="{{$product->product_id}}">
                 <input type="hidden" name="customer_id"@if(Auth::guard('customer')->guest())value=""@else value="{{ Auth::guard('customer')->user()->id }}"@endif >
-                <input type="hidden" name="product_price"value="{{$product->product_price}}">
             </div>
             <div class="col s12">
                 <div class="input-group input-number-group left">

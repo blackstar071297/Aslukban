@@ -20,7 +20,7 @@ Route::get('/product/{id}', 'Customer\ProductController@index');
 Route::get('province','Customer\AddressController@getProvinces');
 Route::get('city','Customer\AddressController@getCity');
 Route::get('barangay','Customer\AddressController@getBarangay');
-Route::get('option-price','Customer\ProductController@getOptionPrice');
+
 Route::group(['prefix' => 'customer'], function () { 
   
   Route::get('/login', 'CustomerAuth\LoginController@showLoginForm')->name('customer.login');
