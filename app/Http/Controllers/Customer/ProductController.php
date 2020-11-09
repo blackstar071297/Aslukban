@@ -17,7 +17,7 @@ use Redirect;
 class ProductController extends Controller
 {
     public function home(){
-        $products = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->join('categories','categories.category_id','=','products.category_id')->paginate(4);
+        $products = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->join('categories','categories.category_id','=','products.category_id')->paginate(6);
         $category = Category::all();
         $images = Images::select('product_id','product_image_name')->get();
         return view('home',['products'=>$products,'images'=>$images,'categories'=>$category]);

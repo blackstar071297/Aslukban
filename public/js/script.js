@@ -72,7 +72,11 @@ $(document).ready(function(){
         });
       }
     });
-
+    $('#product-carousel').carousel({
+      dist: 0,
+      noWrap: true,
+      indicators: true
+    });
     $('.sidenav').sidenav();
     $('.carousel').carousel();
     $('select').formSelect();
@@ -81,10 +85,11 @@ $(document).ready(function(){
     $(".dropdown-trigger").dropdown();
     $('.materialboxed').materialbox();
     $('.collapsible').collapsible();
+    let carouselHeight = $(".carousel.carousel-slider >.carousel-item.active").height();
     $('.carousel.carousel-slider').carousel({
         fullWidth: true,
-        indicators: true
-      });
+        indicators: true,
+      }).height(carouselHeight);
     $('.tabs').tabs();
     $('.tabs').tabs('select','profile_tab');
     $('.datepicker').datepicker();
@@ -93,5 +98,19 @@ $(document).ready(function(){
     });
     $('.tooltipped').tooltip();
     $('.collapsible').collapsible();
+    $('.fixed-action-btn').floatingActionButton();
 
+    $(window).scroll(function(){
+      if ($(this).scrollTop() > 100) {
+          $('.scrollToTop').fadeIn();
+      } else {
+          $('.scrollToTop').fadeOut();
+      }
+  });
+  
+  //Click event to scroll to top
+  $('.scrollToTop').click(function(){
+      $('html, body').animate({scrollTop : 0},800);
+      return false;
+  });
 });

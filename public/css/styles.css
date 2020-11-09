@@ -35,7 +35,7 @@ body{
 }
 .circle-badge{
     position: relative;
-    top: -10px;
+    top: -130px;
     right: -10px;
     padding: 5px 10px;
     border-radius: 50%;
@@ -58,7 +58,7 @@ nav{
     margin-top: 50px;
 }
 .mt-3{
-    margin-top: 100px;
+    margin-top: 55px;
 }
 .mb-1{
     margin-bottom: 25px;
@@ -295,3 +295,97 @@ textarea.materialize-textarea:focus:not([readonly]) {
     -webkit-box-shadow: 0 1px 0 0 #F58635;
     box-shadow: 0 1px 0 0 #F58635;
 }
+
+/* /custom button floatin */
+.btn-floating.btn-halfway-fab {
+    position: absolute;
+    right: 24px;
+    bottom: 20px;
+}
+
+/* button with icon */
+.btn-icon{
+    font-size: calc(.5em + .5vw) !important;
+    justify-content: center;
+    display: flex;
+}
+.rating  a span i{
+    font-size: calc(.5em + 1vw) !important;
+}
+
+.carousel{
+    min-height: 100px;
+    overflow: hidden;
+}
+    .carousel.carousel-slider .carousel-item {
+        width: 100%;
+        height: auto;
+        min-height: 100px!important;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow: hidden
+    }
+
+
+/* custom searchbar */
+    .search-form{
+        display: flex !important;
+        width: 100%;
+    }
+    .search {
+        width: 100% !important;
+        position: relative!important;
+        display: flex!important;
+    }
+  
+    .searchTerm {
+        width: 100%;
+        background-color: white!important;
+        box-shadow: none !important;
+        border: 3px solid #F58635!important;
+        border-right: none!important;
+        padding: 5px!important;
+        height: 25px!important;
+        border-radius: 5px 0 0 5px!important;
+        outline: none!important;
+        color: #9DBFAF!important;
+    }
+  
+    .searchTerm:focus{
+        color: #F58635!important;
+    }
+  
+    .searchButton {
+        width: 40px!important;
+        height: 41px!important;
+        border: 1px solid #F58635!important;
+        background: #F58635!important;
+        text-align: center!important;
+        color: #fff!important;
+        border-radius: 0 5px 5px 0!important;
+        cursor: pointer!important;
+        font-size: 30px!important;
+        right: 100px;
+        display: inline-block!important;
+        
+    }
+  
+  /*Resize the wrap to see the search bar change!*/
+    .wrap{
+        position: relative;
+    }
+    .scrollToTop{
+        text-align:center; 
+        background: whiteSmoke;
+        font-weight: bold;
+        color: #444;
+        text-decoration: none;
+        position:fixed;
+        bottom:0;
+        left: 50%;
+        display:none;
+    }
+    .carousel-item{
+        max-height: 400px;
+    }
