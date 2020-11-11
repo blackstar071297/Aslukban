@@ -1,9 +1,8 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container"style="min-height:65vh">
+<div class="container mt-1"style="min-height:65vh">
     <div class="row">
-        <div class="col s12 mt-1"></div>
         <div class="col s12 mt-1">
             <div class="card">
                 <div class="card-content">

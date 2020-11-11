@@ -1,14 +1,14 @@
 @extends('layouts.layout')
 @push('css')
-  <link rel="stylesheet" href="/css/animation.css">
+  
 @endpush
 @section('content')
 <div class="carousel carousel-slider center mt-3">
   <div class="carousel carousel-slider">
-    <a class="carousel-item" href="#one!"><img src="/images/philampcover3.png"height="100%"></a>
-    <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"height="100%"></a>
-    <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"height="100%"></a>
-    <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"height="100%"></a>
+    <a style="min-height:100px!important"class="carousel-item" href="#one!"><img src="/images/philampcover3.png"height="100%"></a>
+    <a style="min-height:100px!important"class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"height="100%"></a>
+    <a style="min-height:100px!important"class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"height="100%"></a>
+    <a style="min-height:100px!important"class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"height="100%"></a>
   </div>
 </div>
 <div class="container">
@@ -73,9 +73,7 @@
                       <input class="input-number @error('product_quantity') is-invalid @enderror" type="number" value="1" min="0" max="1000"name="product_quantity">
                   </div>
               </div>     
-              <div class="col s12 m12 l6 mt-1">
-                  <button class="btn blue btn-large w-100">Add to cart</button>
-              </div>       
+                    
             </form>
               <button class="addToCart btn blue w-100 btn-icon"type="submit"form="form-{{$product->product_id}}"><i class="material-icons">shopping_cart</i>Add to cart</button>        
           </div>
@@ -127,7 +125,4 @@
   </div>
 
 
-@push('scripts')
-  <script src="/js/animation.js"></script>
-@endpush
 @endsection

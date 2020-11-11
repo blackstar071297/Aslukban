@@ -1,11 +1,11 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container"style="min-height:65vh">
+<div class="container mt-3"style="min-height:65vh">
 
 @if(session('message'))
     <div class="center green-text">
-        <span class=" center">{{session('message')}}</span>
+        <span class="center">{{session('message')}}</span>
     </div>
 @endif
 @if(session()->has('failed'))

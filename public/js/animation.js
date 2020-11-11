@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $('.addToCart').click(function(e){
-        
+        console.log($(this));
         e.preventDefault();
         let card = $(this).closest('.card');
         card.find('.card-image').find('img').clone().addClass('zoom').prependTo($('.shopping-cart'));

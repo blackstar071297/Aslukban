@@ -23,9 +23,9 @@ class ProductController extends Controller
         return view('home',['products'=>$products,'images'=>$images,'categories'=>$category]);
     }
     public function index($id){
-        $product = Product::findOrFail($id);
-        $manufacturer = Manufacturer::where('manufacturer_id','=',$product->manufacturer_id)->get();
-        $images = Images::where('product_id','=',$product->product_id)->get();
+        $product = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->join('categories','categories.category_id','=','products.category_id')->where('products.product_id',$id)->get();
+        $manufacturer = Manufacturer::where('manufacturer_id','=',$product->first()->manufacturer_id)->get();
+        $images = Images::where('product_id','=',$product->first()->product_id)->get();
         return view('product',['product'=>$product,'manufacturer'=>$manufacturer,'images'=>$images]);
     }
     public function showAllProduct(){

@@ -3,20 +3,6 @@
 @section('content')
 <div class="container"style="min-height:65vh">
     <div class="row">
-        <div class="col s12 m6 l6 mt-3">
-            <div class="wrap">
-                <div class="search">
-                <form action="/search" class="search-form">
-                    <input type="text"class="searchTerm" placeholder="What are you looking for?"name="q">
-                    <button type="submit" class="searchButton">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
         @if(count($products)==0 || $q=='')
             <div class="col s12 m12 l12 center mt-1">
                 <h5>No result found</h5>

@@ -187,14 +187,16 @@ select:focus {
   .input-number-group .input-number {
     width: 25px!important;
     padding: 0 12px!important;
-    vertical-align: top!important;
     text-align: center!important;
     outline: none!important;
     display: block!important;
     margin: 0!important;
+    border-bottom: none!important;
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
   }
   
-  .input-number-group .input-number,
+  /* .input-number-group .input-number,
   .input-number-group .input-number-decrement,
   .input-number-group .input-number-increment {
     border: 1px solid #cacaca!important;
@@ -204,12 +206,13 @@ select:focus {
         -ms-user-select: none!important;
             user-select: none!important;
     border-radius: 0;
-  }
+  } */
   
   .input-number-group .input-number-decrement,
   .input-number-group .input-number-increment {
     display: inline-block!important;
     width: 40px!important;
+    height: 40px!important;
     background: #e6e6e6!important;
     color: #0a0a0a!important;
     text-align: center!important;
@@ -255,9 +258,18 @@ select:focus {
 .tabs .tab .disabled a{
     color:grey !important;
 } /*disabled to the text*/
+
 .tabs .tab a{
     background-color:white !important;
     color:#000 !important;
+    line-height: 100%;
+    overflow: hidden;
+    white-space: initial;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle!important;
 } /*Black color to the text*/
 
 .tabs .tab a:hover {
@@ -266,8 +278,8 @@ select:focus {
 } /*Text color on hover*/
 
 .tabs .tab a.active {
-    background-color: #374A8E !important;
-    color:rgb(255, 255, 255) !important;
+    
+    color:black !important;
     font-weight: bold;
 } /*Background and text color when a tab is active*/
 
@@ -317,15 +329,14 @@ textarea.materialize-textarea:focus:not([readonly]) {
     min-height: 100px;
     overflow: hidden;
 }
-    .carousel.carousel-slider .carousel-item {
-        width: 100%;
-        height: auto;
-        min-height: 100px!important;
-        position: absolute;
-        top: 0;
-        left: 0;
-        overflow: hidden
-    }
+.carousel.carousel-slider .carousel-item {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden
+}
 
 
 /* custom searchbar */
@@ -372,20 +383,32 @@ textarea.materialize-textarea:focus:not([readonly]) {
     }
   
   /*Resize the wrap to see the search bar change!*/
-    .wrap{
-        position: relative;
-    }
-    .scrollToTop{
-        text-align:center; 
-        background: whiteSmoke;
-        font-weight: bold;
-        color: #444;
-        text-decoration: none;
-        position:fixed;
-        bottom:0;
-        left: 50%;
-        display:none;
-    }
-    .carousel-item{
-        max-height: 400px;
-    }
+.wrap{
+    position: relative;
+}
+.scrollToTop{
+    text-align:center; 
+    background: whiteSmoke;
+    font-weight: bold;
+    color: #444;
+    text-decoration: none;
+    position:fixed;
+    bottom:0;
+    left: 50%;
+    display:none;
+}
+
+.carousel-item{
+    max-height: 400px;
+    object-fit: contain;
+    height: 100%;
+    width: 100%;
+}
+
+
+.inline{
+    display: flex;
+}
+.no-margin{
+    margin: 0;
+}

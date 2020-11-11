@@ -77,6 +77,7 @@ $(document).ready(function(){
       noWrap: true,
       indicators: true
     });
+    $('.materialboxed').materialbox();
     $('.sidenav').sidenav();
     $('.carousel').carousel();
     $('select').formSelect();
@@ -85,7 +86,8 @@ $(document).ready(function(){
     $(".dropdown-trigger").dropdown();
     $('.materialboxed').materialbox();
     $('.collapsible').collapsible();
-    let carouselHeight = $(".carousel.carousel-slider >.carousel-item.active").height();
+    let carouselHeight = $(".carousel.carousel-slider >.carousel-item.active img").height();
+    console.log(carouselHeight);
     $('.carousel.carousel-slider').carousel({
         fullWidth: true,
         indicators: true,
