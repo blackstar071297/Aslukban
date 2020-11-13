@@ -15,12 +15,13 @@
 
 <body>   
 <div class="navbar-fixed">
-  <nav class="nav-extended">
+
+  <nav class="nav-extended  mb-1">
     <div class="nav-wrapper">
       <a href="/"class="brand-logo"><img src="/images/coverphoto.png"style="margin-top:8px;margin-left:8px" width="250px"height="50px" alt="ASLukban logo"></a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="/"><i class="left material-icons">home</i>Home</a></li>
+          <li><a href="/"><i class="left material-icons">home</i>Home</a></li>
         @if(Auth::guard('customer')->guest())
           <li><a href="{{ url('/customer/login') }}">Login</a></li>
           <li><a href="{{ url('/customer/register') }}">Register</a></li>
@@ -29,6 +30,7 @@
         @endif
       </ul>
     </div>
+    
     <div class="nav-content"style="background:transparent;padding:5px 5px 0">
       <div class="wrap">
         <div class="search">
@@ -41,6 +43,7 @@
         </div>
       </div>
     </div>
+
     @if(Auth::guard('customer')->guest())
     @else
     <ul id="user_dropdown" class="dropdown-content">
@@ -89,40 +92,7 @@
     </div>
   </div>
 </div>
-<div class="modal"id="registrationModal"style="background-color:#374A8E">
-  <div class="modal-content">
-    <div class="container">
-      <div class="row">
-        <form action="">
-          <div class="col s12 center">
-            <img src="{{ asset('storage/images/coverphoto.jpg') }}" alt="" class="responsive-img" width="60%">
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix white-text">account_circle</i>
-            <input type="text" class="validate white-text"placeholder="Enter username">
-          </div>
-          <div class="input-field col s12">
-            <i class="material-icons prefix white-text">lock</i>
-            <input type="password" class="validate white-text"placeholder="Enter password">
-          </div>
-          <div class="input-field col s12">
-            <button class="btn w-100"style="background-color:#F58635">Login</button> 
-            
-          </div>
-          <div class="input-field col s12"style="margin-top:5px">
-            <p class=" white-text"style="margin:0px;">Or Login with</p>  
-            <button class="btn w-100"style="background-color:#4267b2;margin-bottom:10px"><i class="fab fa-facebook-f left"></i>Facebook</button>
-            <button class="btn w-100 red"><i class="fab fa-google-plus-g left"></i>Google</button>
-          </div>
-          <div class="col s12">
-            <a href=""class=" white-text"style="margin:0px">Forgot password?</a><br>
-            <a href=""class=" white-text"style="margin:0px">Sign up</a>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+
 <footer class="page-footer">
   <div class="container ">
     <div class="center">

@@ -15,4 +15,7 @@ class HomeController extends Controller
        
         return view('home');
     }
+    public function showAbout(){
+        return view('about');
+    }
 }

@@ -49,6 +49,7 @@ $(document).ready(function(){
             $('.carousel').carousel('next');
         }
     },4000);
+    
 
 });
 

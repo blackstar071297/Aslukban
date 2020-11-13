@@ -67,7 +67,7 @@
 </div> -->
 <div class="container"style="min-height:65vh">
     <div class="row">
-        <div class="card col s12 m6 l6 offset-l3 mt-1">
+        <div class="card col s12 m6 l6 offset-l3 mt-4"style="margin-top:85px">
             <div class="card-content">
                 <form role="form" method="POST"action="{{ url('/customer/login') }}">
                     {{ csrf_field() }}

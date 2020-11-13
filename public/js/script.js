@@ -101,7 +101,7 @@ $(document).ready(function(){
     $('.tooltipped').tooltip();
     $('.collapsible').collapsible();
     $('.fixed-action-btn').floatingActionButton();
-
+    $('.parallax').parallax();
     $(window).scroll(function(){
       if ($(this).scrollTop() > 100) {
           $('.scrollToTop').fadeIn();
