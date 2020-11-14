@@ -1,12 +1,10 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="container-bg mt-3"style="min-height:65vh">
-    <div class="row"style="background: rgba(0, 0, 0, 0.5);margin:0!important;">
-        <div class="col s12 center">
-            <h1 class="fade center white-text text-bold">Our story</h1>
-        </div>
-        <div class="col s12 center">
+<div class="container-bg mt-3"style="min-height:75vh">
+    <div class="row valign-wrapper center-align"style="background: rgba(0, 0, 0, 0.5);margin:0!important;height:100%!important">
+        <div class="col s12"style="min-height:75vh">
+            <h1 class="fade white-text text-bold">Our story</h1>
             <p class="fade white-text text-bold">
                 AS Lukban Auto Spare Parts was established in 1990 and one of the leading auto spare parts wholesaler and retail in Rizal. For 30 years, We are providing high quality parts for your car care and accessories, engine parts and underchassis components for cars and trucks thru online and in-store.
                 We deliver nationwide thru LBC and also accept sameday delivery within NCR and Rizal area thru Lalamove, Angkas and Grab.

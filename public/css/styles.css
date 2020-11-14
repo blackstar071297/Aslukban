@@ -32,6 +32,7 @@ body{
 
 .container{
     width: 95%;
+    min-height:75vh;
 }
 .circle-badge{
     position: relative;
@@ -44,11 +45,11 @@ body{
 }
 
 nav{
-    background-color: #374A8E;
+    background-color:rgba(62, 158, 246, 1);
 }
 
 .nav-wrapper{
-    background-color: #374A8E;
+    background-color:rgba(62, 158, 246, 1);
 }
 
 .mt-1{
@@ -141,12 +142,6 @@ select:focus {
     -webkit-box-shadow: none !important;
     box-shadow: none !important;
 }
-/* .numeric-input > .numeric-input-minus{
-    border-radius: 10px 0px 0px 10px;
-}
-.numeric-input > .numeric-input-plus{
-    border-radius: 0px 10px 10px 0px;
-} */
 
 .alert{
     font-weight: bold;
@@ -349,6 +344,7 @@ textarea.materialize-textarea:focus:not([readonly]) {
         width: 100% !important;
         position: relative!important;
         display: flex!important;
+        padding: 0 10px 0 10px;
     }
   
     .searchTerm {
@@ -382,6 +378,17 @@ textarea.materialize-textarea:focus:not([readonly]) {
         display: inline-block!important;
         
     }
+    .searchFilter{
+        background-color: rgba(255,255,255,0.9);
+        width: auto;
+        padding: 5px;
+        border: 3px solid #F58635 !important;
+        border-radius: 0 !important;
+        height: 41px!important;
+    }
+    .searchButton .fa, .fab, .fad, .fal, .far, .fas {
+        line-height: 1 !important;
+    }
   
   /*Resize the wrap to see the search bar change!*/
 .wrap{
@@ -400,7 +407,6 @@ textarea.materialize-textarea:focus:not([readonly]) {
 }
 
 .carousel-item{
-    max-height: 400px;
     object-fit: contain;
     height: 100%;
     width: 100%;
@@ -408,14 +414,19 @@ textarea.materialize-textarea:focus:not([readonly]) {
 
 
 .inline{
-    display: flex;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+            align-items: center !important;
 }
 .no-margin{
     margin: 0;
 }
 
 .container-bg{
-    background: url(https://gratisography.com/wp-content/uploads/2018/05/gratisography-239H-1170x780.jpg) no-repeat center center fixed;
+    background-image: url(https://gratisography.com/wp-content/uploads/2018/05/gratisography-239H-1170x780.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -428,3 +439,10 @@ textarea.materialize-textarea:focus:not([readonly]) {
     width: 100%;
     height: 100%;
 }
+.reviews-btn{
+    cursor: pointer;
+}
+.review-btn > .material-icons{
+    font-size: 75px !important;
+}
+

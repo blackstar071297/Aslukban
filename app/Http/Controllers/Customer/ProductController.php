@@ -34,13 +34,30 @@ class ProductController extends Controller
         return view('all-products',compact('products','images'));
         
      }
-    public function search(){
-        $query = request('q');
-        $manufacturer = request('manufacturer');
-        $products = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->join('categories','categories.category_id','=','products.category_id')->where('products.product_name','LIKE','%'.$query.'%')->orWhere('manufacturers.manufacturer_name','LIKE','%'.$query.'%')->orWhere('categories.category_name','LIKE','%'.$query.'%')->paginate(10);
+    public function search(request $request){
+        $query;
+        if($request->has('q')){
+            $query = $request->get('q');
+        }
+        if(!$request->has('manufacturer')){
+            $manufacturer = Manufacturer::select('manufacturer_name')->get();
+        }else{
+            $manufacturer = $request->input('manufacturer');
+        }
+        if(!$request->has('category')){
+            $category = Category::select('category_name')->get();
+        }else{
+            $category = $request->input('category');
+        }
+        if($request->has('q') || !empty($query)){
+            $products = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->join('categories','categories.category_id','=','products.category_id')->where('products.product_name','LIKE','%'.$query.'%')->whereIn('manufacturers.manufacturer_name',$manufacturer)->whereIn('categories.category_name',$category)->paginate(10);
+        }else{
+            $products = Product::join('manufacturers','manufacturers.manufacturer_id','=','products.manufacturer_id')->join('categories','categories.category_id','=','products.category_id')->whereIn('manufacturers.manufacturer_name',$manufacturer)->whereIn('categories.category_name',$category)->paginate(10);
+        }
         $images = Images::all();
+        session()->flashInput($request->input());
         return view('search',['products'=>$products,'manufacturers'=>$manufacturer,'images'=>$images,'q'=>$query]);
-
+        
     }
 
 }

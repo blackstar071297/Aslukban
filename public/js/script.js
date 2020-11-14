@@ -50,7 +50,6 @@ $(document).ready(function(){
           a.prependTo(div)
           div.prependTo('.image-row');  
         }
-        console.log(selected);
       });
      
       
@@ -115,4 +114,15 @@ $(document).ready(function(){
       $('html, body').animate({scrollTop : 0},800);
       return false;
   });
+
+  $('#reset_btn').click(function(e){
+    e.preventDefault();
+    $('input:checkbox').attr('checked',false);
+    $('input:checkbox').each(function(){
+      console.log($(this).val());
+      $(this).prop('checked',false);
+      $('#query').val(null);
+    });
+    $(this).unbind('click').click();
+  })
 });

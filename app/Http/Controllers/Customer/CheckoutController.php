@@ -16,7 +16,7 @@ use Validator;
 use Redirect;
 use App\Rate;
 use App\lbc;
-
+use auth;
 class CheckoutController extends Controller
 {
     public function index($id,request $request){
@@ -76,7 +76,7 @@ class CheckoutController extends Controller
             $cart->delete();
             
         }
-        return redirect('/')->with('success','Your order is successfully place');
+        return view('customer.thankyou',['receipt'=>$receipt]);
     }
     private function getShippingFee($address,$total_weight){
         $city_code = $address->first()->city_municipality_code;

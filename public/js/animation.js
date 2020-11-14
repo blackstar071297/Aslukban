@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $('.addToCart').click(function(e){
         console.log($(this));
         e.preventDefault();
@@ -19,6 +20,7 @@ $(document).ready(function(){
     
         return elementBottom > viewportTop && elementTop < viewportBottom;
     };
+
     $(window).on('resize scroll load', function() {
 
         $('.show-on-scroll').each(function(index){
@@ -33,12 +35,11 @@ $(document).ready(function(){
                 
             }
         });
-
     });
     function add(element){
-        $(element).addClass('is-visible');
-   }
-   function remove(element){
+            $(element).addClass('is-visible');
+    }
+    function remove(element){
         $(element).removeClass('is-visible');
     }
     setInterval(function () {
@@ -49,8 +50,18 @@ $(document).ready(function(){
             $('.carousel').carousel('next');
         }
     },4000);
-    
+    //navbar animation
+    setInterval(function () {
+        let top = $(window).scroll().scrollTop();
+        if(top > 150){
+            $('#navbar-fixed').addClass('navbar-fixed');
+            
+        }else{
+            $('#navbar-fixed').removeClass('navbar-fixed');
+        }
+    },100);
 
+   
 });
 
     

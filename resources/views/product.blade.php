@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="row mt-3">
+<div class="row mt-1">
     <div class="col s12 m5 l4">
         <div class="carousel carousel-slider center">
             <div class="carousel carousel-slider">
@@ -15,17 +15,16 @@
         </div>
     </div>
     <div class="col s12 m7 l8 white">
-        <p class="flow-text product-name no-margin">{{$product->first()->product_name}}</p>
+        <h5 class="flow-text product-name no-margin">{{$product->first()->product_name}}</h5>
         <p class="flow-text product-price no-margin"style="font-size:3rem;">P{{$product->first()->product_price}}</p>
-        <div class="rating inline" >
-            <p>
-            
-            </p>
-            <a href=""class="grey-text">
-                <span><i class="yellow-text material-icons">star_rate</i></span><span><i class="yellow-text material-icons">star_rate</i></span><span><i class="yellow-text material-icons">star_rate</i></span><span><i class="yellow-text material-icons">star_rate</i></span><span><i class="yellow-text material-icons">star_rate</i> Ratings</span>
-            </a>
-            <p></p>
-        </div>
+        <a href=""class="grey-text"style="display: flex;align-items:center;">
+            <span><i class="yellow-text material-icons">star_rate</i></span>
+            <span><i class="yellow-text material-icons">star_rate</i></span>
+            <span><i class="yellow-text material-icons">star_rate</i></span>
+            <span><i class="yellow-text material-icons">star_rate</i></span>
+            <span><i class="yellow-text material-icons">star_rate</i></span>
+            <span>Ratings</span>
+        </a>
         <div class="inline no-margin"style="line-height:0">
             <p class="grey-text">Brand:</p>
             <p><a href="">{{$product->first()->manufacturer_name}}</a></p>
@@ -56,10 +55,9 @@
                             </span>
                         @enderror
                     </div>
-                </div>     
-    
+                </div>
             </form>
-            <div class="col s12 mt-1">
+            <div class="col s12 m6 l6 mt-1">
                 <div class="card">
                     <div class="card-image"style="display:none">
                         <div class="card-image">
@@ -76,9 +74,9 @@
         <div class="row">
             <div class="col s12">
                 <ul class="tabs">
-                    <li class="tab col s4"><a class="active" href="#description" >Description</a></li>
+                    <li class="tab col s4"><a href="#description" >Description</a></li>
                     <li class="tab col s4"><a href="#additional">Additional Information</a></li>
-                    <li class="tab col s4"><a href="#reviews">Reviews</a></li>
+                    <li class="tab col s4"><a class="active" href="#reviews">Reviews</a></li>
                 </ul>
             </div>
             <div id="description" class="col s12 white">
@@ -99,8 +97,9 @@
                 </div>
             </div>
             <div id="reviews" class="col s12 white">
-                <h5 class="center">This feature is coming soon!</h5>
+
             </div>
+            
         </div>
     </div>
 </div>

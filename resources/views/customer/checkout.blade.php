@@ -64,16 +64,7 @@
                                     <div class="input-field">
                                         <select name="payment_method"class="browser-default"id="payment_method">
                                             <option value="1"selected>Cash On Delivery</option>
-                                            <option value="0">Gcash</option>
-                                            <option value="2">Cash On Pickup</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <div class="col s12">
-                                    <p><span class="red-text">*</span> For gcash user please send your payment to 091916653 and enter reference number below</p>
-                                    <div class="input-field">
-                                        <input type="number"name="reference_number"id="reference_number">
-                                        <label for="reference_number">Reference number</label>
                                     </div>
                                 </div>
                                 <div class="col s12">

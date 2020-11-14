@@ -3,10 +3,10 @@
   
 @endpush
 @section('content')
-<div class="carousel carousel-slider center mt-3">
+<div class="carousel carousel-slider center">
   <div class="carousel carousel-slider">
-    <a style="min-height:100px!important"class="carousel-item" href="#one!"><img src="/images/philampcover3.png"height="100%"></a>
-    <a style="min-height:100px!important"class="carousel-item" href="#two!"><img src="https://lorempixel.com/800/400/food/2"height="100%"></a>
+    <a style="min-height:100px!important"class="carousel-item" href="#one!"><img src="/images/beta announcement 2.png"height="100%"></a>
+    <a style="min-height:100px!important"class="carousel-item" href="#two!"><img src="/images/beta announcement.png"height="100%"></a>
     <a style="min-height:100px!important"class="carousel-item" href="#three!"><img src="https://lorempixel.com/800/400/food/3"height="100%"></a>
     <a style="min-height:100px!important"class="carousel-item" href="#four!"><img src="https://lorempixel.com/800/400/food/4"height="100%"></a>
   </div>
@@ -17,16 +17,15 @@
       <h4 class="flow-text"style="font-weight:bold">Top Selling Category</h4>
     </div>
     @foreach($categories as $category)
-    <a href="/search?q={{$category->category_name}}"class="grey-text">
-      <div class="col s4 m2 l2">
-        <img src="images/category/{{$category->image}}" alt=""width="100%"height="100%" class="circle">
-        <h5 class="btn-icon center-align"style="font-weight:bold">{{$category->category_name}}</h5>
-      </div>
-    </a>
+      <a href="/search?q={{$category->category_name}}"class="grey-text">
+        <div class="col s4 m2 l2">
+          <img src="images/category/{{$category->image}}" alt=""width="100%"height="100%" class="circle">
+          <h5 class="btn-icon center-align"style="font-weight:bold">{{$category->category_name}}</h5>
+        </div>
+      </a>
     @endforeach    
   </div>
   <div class="row">
-        
     @if($products->count() > 0)
     <div class="col s12 m12 l12">
       <h4 class="flow-text show-on-scroll"style="font-weight:bold">Top Selling Products</h4>
@@ -90,7 +89,6 @@
     <div class="col s12">
       <h5 class="flow-text"style="font-weight:bold">Car Brand</h5>
     </div>
-
     <div class="col s6 m3 l3">
       <div class="card">
         <div class="card-image">
@@ -118,9 +116,6 @@
           <img src="https://www.carlogos.org/logo/Isuzu-logo-1991-3840x2160.png" alt="">
         </div>
       </div>
-    </div>
-    <div class="col s12">
-      
     </div>
   </div>
 
